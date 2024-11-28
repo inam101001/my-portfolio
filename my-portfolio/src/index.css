@@ -4,11 +4,20 @@
 
 :root {
   color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: black;
   font-family: "Cascadia Code", monospace;
+}
+
+section {
+  scroll-margin-top: 2rem;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 ::-webkit-scrollbar {
@@ -26,4 +35,13 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #00cc7a;
+}
+
+/* Add smooth transitions */
+.section-content {
+  @apply opacity-0 translate-y-4 transition-all duration-700;
+}
+
+.section-content.visible {
+  @apply opacity-100 translate-y-0;
 }
