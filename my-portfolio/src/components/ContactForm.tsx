@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -25,18 +29,21 @@ const ContactForm: React.FC = () => {
   };
 
   const services = [
-    'Web Development',
-    'Mobile Development',
-    'Cloud Solutions',
-    'DevOps Services',
-    'UI/UX Design'
+    "Web Development",
+    "Mobile Development",
+    "Cloud Solutions",
+    "DevOps Services",
+    "UI/UX Design",
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl">
-      <h2 className="text-[#00ff99] text-4xl mb-4 font-mono">Let's work together</h2>
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl ">
+      <h2 className="text-[#00ff99] text-4xl mb-4 font-mono">
+        Let's work together
+      </h2>
       <p className="text-gray-400 mb-8">
-        Have a project in mind? Let's discuss how we can bring your ideas to life.
+        Have a project in mind? Let's discuss how we can bring your ideas to
+        life.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -91,7 +98,10 @@ const ContactForm: React.FC = () => {
             </option>
           ))}
         </select>
-        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#00ff99]" size={20} />
+        <ChevronDown
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#00ff99]"
+          size={20}
+        />
       </div>
 
       <textarea

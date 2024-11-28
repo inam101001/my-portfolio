@@ -1,11 +1,11 @@
-import React from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import React from "react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const ContactInfo: React.FC = () => {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center">
+        <div className="w-12 h-12 bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-lg flex items-center justify-center">
           <Phone className="text-[#00ff99]" size={24} />
         </div>
         <div>
@@ -15,7 +15,7 @@ const ContactInfo: React.FC = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center">
+        <div className="w-12 h-12 bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-lg flex items-center justify-center">
           <Mail className="text-[#00ff99]" size={24} />
         </div>
         <div>
@@ -25,7 +25,7 @@ const ContactInfo: React.FC = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center">
+        <div className="w-12 h-12 bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-lg flex items-center justify-center">
           <MapPin className="text-[#00ff99]" size={24} />
         </div>
         <div>

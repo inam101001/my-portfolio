@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface InfoItemProps {
   label: string;
@@ -15,13 +15,13 @@ const InfoItem: React.FC<InfoItemProps> = ({ label, value }) => (
 const AboutMeSection: React.FC = () => {
   return (
     <div>
-      <h2 className="text-4xl font-bold mb-6">About me</h2>
+      <h2 className="text-4xl font-bold mb-6 ">About me</h2>
       <p className="text-gray-400 mb-8">
         Full Stack Developer passionate about creating innovative web solutions
         and learning new technologies.
       </p>
-      
-      <div className="bg-[#1a1a1a] p-6 rounded-lg space-y-4">
+
+      <div className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 p-6 rounded-lg space-y-4">
         <InfoItem label="Name" value="Inam Ul Haq" />
         <InfoItem label="Experience" value="4+ Years" />
         <InfoItem label="Phone" value="(+40) 321 654 678" />

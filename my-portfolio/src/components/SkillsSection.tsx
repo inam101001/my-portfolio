@@ -15,7 +15,7 @@ const SkillItem: React.FC<SkillItemProps> = ({ icon, name }) => {
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
-      <div className="bg-[#1a1a1a] p-4 rounded-lg flex items-center justify-center group hover:border-[#00ff99] border border-transparent transition-colors">
+      <div className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 p-4 rounded-lg flex items-center justify-center group hover:border-[#00ff99] transition-colors">
         <img src={icon} alt={name} className="w-12 h-12" />
       </div>
       {showTooltip && <Tooltip text={name} />}

@@ -44,7 +44,7 @@ function App() {
       <ScrollReveal>
         <section id="contact" className="min-h-screen py-20">
           <div className="container">
-            <div className="bg-[#111] rounded-lg p-8 shadow-xl max-w-6xl mx-auto">
+            <div className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-lg p-8 shadow-xl max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div className="lg:col-span-2">
                   <ContactForm />
