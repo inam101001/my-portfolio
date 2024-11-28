@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import TerminalHeader from './TerminalHeader';
+import React, { useState, useEffect } from "react";
+import TerminalHeader from "./TerminalHeader";
 
 interface TerminalProps {
   command: string;
@@ -13,7 +13,7 @@ const Terminal: React.FC<TerminalProps> = ({ command, output }) => {
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
+      setShowCursor((prev) => !prev);
     }, 500);
 
     return () => clearInterval(cursorInterval);
@@ -22,12 +22,19 @@ const Terminal: React.FC<TerminalProps> = ({ command, output }) => {
   useEffect(() => {
     if (currentIndex < output.length) {
       const timer = setTimeout(() => {
-        setDisplayedOutput(prev => [...prev, output[currentIndex]]);
-        setCurrentIndex(prev => prev + 1);
+        setDisplayedOutput((prev) => [...prev, output[currentIndex]]);
+        setCurrentIndex((prev) => prev + 1);
       }, 100);
       return () => clearTimeout(timer);
     }
   }, [currentIndex, output]);
+
+  const renderLine = (line: string) => {
+    if (line.startsWith("$")) {
+      return <span className="text-[#00ff99]">{line}</span>;
+    }
+    return line;
+  };
 
   return (
     <div className="bg-black/80 backdrop-blur-sm border border-[#00ff99] rounded-lg p-4 font-mono text-sm w-full max-w-2xl">
@@ -42,7 +49,7 @@ const Terminal: React.FC<TerminalProps> = ({ command, output }) => {
         </div>
         {displayedOutput.map((line, index) => (
           <div key={index} className="ml-4 text-gray-300">
-            {line}
+            {renderLine(line)}
           </div>
         ))}
         <div className="inline-block ml-4 h-4 w-2 bg-[#00ff99] animate-pulse" />
