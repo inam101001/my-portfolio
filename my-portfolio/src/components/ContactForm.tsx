@@ -53,7 +53,7 @@ const ContactForm: React.FC = () => {
           placeholder="Firstname"
           value={formData.firstName}
           onChange={handleChange}
-          className="bg-[#1a1a1a] border border-[#333] rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
+          className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
         />
         <input
           type="text"
@@ -61,7 +61,7 @@ const ContactForm: React.FC = () => {
           placeholder="Lastname"
           value={formData.lastName}
           onChange={handleChange}
-          className="bg-[#1a1a1a] border border-[#333] rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
+          className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
         />
       </div>
 
@@ -72,7 +72,7 @@ const ContactForm: React.FC = () => {
           placeholder="Email address"
           value={formData.email}
           onChange={handleChange}
-          className="bg-[#1a1a1a] border border-[#333] rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
+          className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
         />
         <input
           type="tel"
@@ -80,7 +80,7 @@ const ContactForm: React.FC = () => {
           placeholder="Phone number"
           value={formData.phone}
           onChange={handleChange}
-          className="bg-[#1a1a1a] border border-[#333] rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
+          className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
         />
       </div>
 
@@ -89,11 +89,15 @@ const ContactForm: React.FC = () => {
           name="service"
           value={formData.service}
           onChange={handleChange}
-          className="w-full bg-[#1a1a1a] border border-[#333] rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors appearance-none"
+          className="w-full bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors appearance-none"
         >
           <option value="">Select a service</option>
           {services.map((service) => (
-            <option key={service} value={service}>
+            <option
+              className="bg-black backdrop-blur-sm border border-[#00ff99]"
+              key={service}
+              value={service}
+            >
               {service}
             </option>
           ))}
@@ -110,7 +114,7 @@ const ContactForm: React.FC = () => {
         value={formData.message}
         onChange={handleChange}
         rows={6}
-        className="w-full bg-[#1a1a1a] border border-[#333] rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
+        className="w-full bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
       />
 
       <button

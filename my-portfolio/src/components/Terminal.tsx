@@ -41,7 +41,7 @@ const Terminal: React.FC<TerminalProps> = ({ command, output }) => {
       <TerminalHeader />
       <div className="text-gray-300 space-y-2">
         <div className="flex items-center gap-2">
-          <span className="text-[#00ff99]">guest@portfolio</span>
+          <span className="text-[#00ff99]">inam@portfolio</span>
           <span className="text-white">:</span>
           <span className="text-blue-400">~</span>
           <span className="text-white">$</span>
