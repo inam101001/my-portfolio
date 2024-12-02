@@ -35,7 +35,7 @@ function App() {
 
       {/* Projects Section */}
       <ScrollReveal>
-        <section id="projects" className="min-h-screen py-20">
+        <section id="projects" className="min-h-screen">
           <div className="container">
             <ProjectsSection />
           </div>

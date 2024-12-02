@@ -88,8 +88,8 @@ const ContactForm: React.FC = () => {
         Let's work together
       </h2>
       <p className="text-gray-400 mb-8">
-        Have a project in mind? Let's discuss how we can bring your ideas to
-        life.
+        Sometimes there is a silver bullet for boosting software engineering
+        productivity. But you need to shoot the right person.
       </p>
 
       {submitStatus.type && (

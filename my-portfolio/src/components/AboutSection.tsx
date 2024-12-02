@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import AboutNav from './AboutNav';
-import ExperienceSection from './ExperienceSection';
-import EducationSection from './EducationSection';
-import SkillsSection from './SkillsSection';
-import AboutMeSection from './AboutMeSection';
+import React, { useState } from "react";
+import AboutNav from "./AboutNav";
+import ExperienceSection from "./ExperienceSection";
+import EducationSection from "./EducationSection";
+import SkillsSection from "./SkillsSection";
+import AboutMeSection from "./AboutMeSection";
 
 const AboutSection: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('experience');
+  const [activeSection, setActiveSection] = useState("experience");
 
   const renderContent = () => {
     switch (activeSection) {
-      case 'experience':
+      case "experience":
         return <ExperienceSection />;
-      case 'education':
+      case "education":
         return <EducationSection />;
-      case 'skills':
+      case "skills":
         return <SkillsSection />;
-      case 'about':
+      case "about":
         return <AboutMeSection />;
       default:
         return <ExperienceSection />;
@@ -25,7 +25,10 @@ const AboutSection: React.FC = () => {
 
   return (
     <div className="flex flex-col md:flex-row gap-8">
-      <AboutNav activeSection={activeSection} onSectionChange={setActiveSection} />
+      <AboutNav
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+      />
       <div className="flex-1">{renderContent()}</div>
     </div>
   );

@@ -18,8 +18,8 @@ const Hero: React.FC = () => {
             <span className="text-[#00ff99]">Inam Ul Haq</span>
           </h1>
           <p className="text-gray-400 max-w-xl">
-            I excel at crafting elegant digital experiences and I am proficient
-            in various programming languages and technologies.
+            I create modern and user-friendly digital solutions, using my skills
+            in programming and technology to bring ideas to life.
           </p>
 
           <div className="flex gap-4 mt-6">
@@ -38,16 +38,16 @@ const Hero: React.FC = () => {
           output={[
             "$ whoami",
             "Full Stack Developer specializing in:",
-            "- Frontend Development (React, Vue, Angular)",
-            "- Backend Development (Node.js, Python, Java)",
-            "- DevOps & Cloud Architecture",
+            "- Frontend Development (React, Next.js, Tailwind CSS)",
+            "- Backend Development (Node.js, Nest.js, Express.js)",
+            "- DevOps & Cloud Architecture (AWS, GCP, Azure, Automation, Linux)",
             "",
             "$ skills --list",
             "→ JavaScript/TypeScript",
             "→ React/Next.js",
-            "→ Node.js/Express",
-            "→ MongoDB/PostgreSQL",
-            "→ AWS/Docker",
+            "→ Node.js/Nest.js",
+            "→ MongoDB/ArangoDB",
+            "→ Docker/Kubernetes/Jenkins",
           ]}
         />
       </div>

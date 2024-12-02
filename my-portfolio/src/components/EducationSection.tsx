@@ -29,24 +29,14 @@ const EducationSection: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <EducationItem
-          period="2020 - 2021"
-          degree="Full Stack Web Development Bootcamp"
-          institution="Online Course Platform"
+          period="2020 - 2024"
+          degree="BSc Computer Science"
+          institution="University of Gujrat"
         />
         <EducationItem
-          period="2019"
-          degree="Front-end Track"
-          institution="Codecademy"
-        />
-        <EducationItem
-          period="2020 - 2021"
-          degree="Programming Course"
-          institution="Online Course"
-        />
-        <EducationItem
-          period="2019"
-          degree="Certified Web Developer"
-          institution="Tech Institute"
+          period="2018 - 2020"
+          degree="HSSC Computer Science"
+          institution="Punjab Group of Colleges"
         />
       </div>
     </div>

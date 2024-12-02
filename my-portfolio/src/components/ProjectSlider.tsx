@@ -64,17 +64,18 @@ const ProjectSlider: React.FC<ProjectSliderProps> = ({ projects }) => {
         </div>
       </div>
 
-      <div className="flex gap-2 absolute bottom-0 right-0">
+      <div className="w-1/2 flex gap-2 absolute bottom-0 left-0 mb-0.5">
         <button
           onClick={prevSlide}
-          className="p-2 bg-[#00ff99] text-black hover:bg-[#00cc7a] transition-colors"
+          className="w-full p-2 bg-[#00ff99] text-black hover:bg-[#00cc7a] transition-colors rounded-lg"
         >
           <ArrowLeft size={24} />
         </button>
         <button
           onClick={nextSlide}
-          className="p-2 bg-[#00ff99] text-black hover:bg-[#00cc7a] transition-colors"
+          className="w-full p-2 bg-[#00ff99] text-black hover:bg-[#00cc7a] transition-colors rounded-lg flex justify-between items-center"
         >
+          <span></span>
           <ArrowRight size={24} />
         </button>
       </div>

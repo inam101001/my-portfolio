@@ -29,24 +29,24 @@ const ExperienceSection: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <ExperienceItem
-          period="2022 - Present"
-          title="Full Stack Developer"
-          company="Tech Solutions Inc."
+          period="2024 - Present"
+          title="Backend Developer"
+          company="Binomical LLC"
         />
         <ExperienceItem
-          period="Summer 2021"
-          title="Front-End Developer Intern"
-          company="Web Design Studio"
+          period="Summer 2023"
+          title="Web Developer Intern"
+          company="KaiRiz Cyber Technologies"
         />
         <ExperienceItem
-          period="2020 - 2021"
+          period="2022 - 2023"
           title="Freelance Web Developer"
           company="E-commerce Startup"
         />
         <ExperienceItem
-          period="2019 - 2020"
+          period="2022 - 2023"
           title="Teaching Assistant"
-          company="Tech Academy"
+          company="University of Gujrat"
         />
       </div>
     </div>

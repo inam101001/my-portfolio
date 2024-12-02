@@ -17,10 +17,10 @@ const StatItem: React.FC<StatItemProps> = ({ value, label }) => (
 const Stats: React.FC = () => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border border-[#00ff99]/20 rounded-lg p-6 bg-black/50 backdrop-blur-sm">
-      <StatItem value="12" label="Years of experience" />
-      <StatItem value="26" label="Projects completed" />
-      <StatItem value="8" label="Technologies mastered" />
-      <StatItem value="500+" label="Code commits" />
+      <StatItem value="2+" label="Years of experience" />
+      <StatItem value="10+" label="Projects completed" />
+      <StatItem value="5+" label="Technologies mastered" />
+      <StatItem value="200+" label="Code commits" />
     </div>
   );
 };
