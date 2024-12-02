@@ -59,15 +59,15 @@ const ContactForm: React.FC = () => {
         service: "",
         message: "",
       });
-    } catch (error: any) {
-      console.error("Error sending email:", error); // Log the raw error for debugging
-
+    } catch (error: unknown) {
       const errorMessage =
-        error.text || "Failed to send message. Please try again later.";
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred.";
 
       setSubmitStatus({
         type: "error",
-        message: errorMessage,
+        message: `Failed to send message. ${errorMessage}`,
       });
     } finally {
       setIsSubmitting(false);

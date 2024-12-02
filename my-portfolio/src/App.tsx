@@ -6,10 +6,12 @@ import Navbar from "./components/Navbar";
 import ContactForm from "./components/ContactForm";
 import ContactInfo from "./components/ContactInfo";
 import ScrollReveal from "./components/ScrollReveal";
+import CustomCursor from "./components/CustomCursor";
 
 function App() {
   return (
     <div className="min-h-screen bg-black text-white font-['Cascadia_Code']">
+      <CustomCursor />
       <BinaryRain />
 
       {/* Hero Section */}
@@ -42,14 +44,14 @@ function App() {
 
       {/* Contact Section */}
       <ScrollReveal>
-        <section id="contact" className="min-h-screen py-20">
+        <section id="contact" className="min-h-screen py-4">
           <div className="container">
             <div className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-lg p-8 shadow-xl max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div className="lg:col-span-2">
                   <ContactForm />
                 </div>
-                <div className="lg:col-span-1">
+                <div className="lg:col-span-1 flex justify-center items-center h-full">
                   <ContactInfo />
                 </div>
               </div>
