@@ -9,7 +9,7 @@ interface TerminalProps {
 const Terminal: React.FC<TerminalProps> = ({ command, output }) => {
   const [displayedOutput, setDisplayedOutput] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showCursor, setShowCursor] = useState(true);
+  const [, setShowCursor] = useState(true);
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
@@ -52,9 +52,7 @@ const Terminal: React.FC<TerminalProps> = ({ command, output }) => {
             {renderLine(line)}
           </div>
         ))}
-        {showCursor && (
-          <div className="inline-block ml-4 h-4 w-2 bg-[#00ff99] animate-pulse" />
-        )}
+        <div className="inline-block ml-4 h-4 w-2 bg-[#00ff99] animate-pulse" />
       </div>
     </div>
   );
