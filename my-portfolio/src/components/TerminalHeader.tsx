@@ -1,5 +1,5 @@
-import React from 'react';
-import { Terminal as TerminalIcon, Minus, X, Square } from 'lucide-react';
+import React from "react";
+import { Terminal as TerminalIcon } from "lucide-react";
 
 const TerminalHeader: React.FC = () => {
   return (
