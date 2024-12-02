@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from "react";
 import TerminalHeader from "./TerminalHeader";
 
@@ -53,7 +52,9 @@ const Terminal: React.FC<TerminalProps> = ({ command, output }) => {
             {renderLine(line)}
           </div>
         ))}
-        <div className="inline-block ml-4 h-4 w-2 bg-[#00ff99] animate-pulse" />
+        {showCursor && (
+          <div className="inline-block ml-4 h-4 w-2 bg-[#00ff99] animate-pulse" />
+        )}
       </div>
     </div>
   );
