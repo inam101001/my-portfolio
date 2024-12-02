@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const ContactForm: React.FC = () => {
-  const form = useRef<HTMLFormElement>(null);
+  const form = useRef<HTMLFormElement | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
@@ -42,7 +42,7 @@ const ContactForm: React.FC = () => {
         "service_8jh55bf", // Replace with your EmailJS service ID
         "template_y855p8f", // Replace with your EmailJS template ID
         form.current,
-        "a7Ke8zezFnlTyil-n" // Your public key
+        "a7Ke8zezFnlTyil-n" // Replace with your EmailJS public key
       );
 
       setSubmitStatus({
@@ -59,10 +59,15 @@ const ContactForm: React.FC = () => {
         service: "",
         message: "",
       });
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Error sending email:", error); // Log the raw error for debugging
+
+      const errorMessage =
+        error.text || "Failed to send message. Please try again later.";
+
       setSubmitStatus({
         type: "error",
-        message: "Failed to send message." + error,
+        message: errorMessage,
       });
     } finally {
       setIsSubmitting(false);
