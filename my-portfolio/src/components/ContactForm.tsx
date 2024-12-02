@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { ChevronDown } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const ContactForm: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,10 +30,43 @@ const ContactForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    if (!form.current) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      await emailjs.sendForm(
+        "service_8jh55bf", // Replace with your EmailJS service ID
+        "template_y855p8f", // Replace with your EmailJS template ID
+        form.current,
+        "a7Ke8zezFnlTyil-n" // Your public key
+      );
+
+      setSubmitStatus({
+        type: "success",
+        message: "Message sent successfully! I will get back to you soon.",
+      });
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Failed to send message." + error,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = [
@@ -37,7 +78,7 @@ const ContactForm: React.FC = () => {
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl ">
+    <form ref={form} onSubmit={handleSubmit} className="space-y-6 max-w-3xl">
       <h2 className="text-[#00ff99] text-4xl mb-4 font-mono">
         Let's work together
       </h2>
@@ -46,6 +87,18 @@ const ContactForm: React.FC = () => {
         life.
       </p>
 
+      {submitStatus.type && (
+        <div
+          className={`p-4 rounded-md ${
+            submitStatus.type === "success"
+              ? "bg-[#00ff99]/10 text-[#00ff99]"
+              : "bg-red-500/10 text-red-500"
+          }`}
+        >
+          {submitStatus.message}
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <input
           type="text"
@@ -53,6 +106,7 @@ const ContactForm: React.FC = () => {
           placeholder="Firstname"
           value={formData.firstName}
           onChange={handleChange}
+          required
           className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
         />
         <input
@@ -61,6 +115,7 @@ const ContactForm: React.FC = () => {
           placeholder="Lastname"
           value={formData.lastName}
           onChange={handleChange}
+          required
           className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
         />
       </div>
@@ -72,6 +127,7 @@ const ContactForm: React.FC = () => {
           placeholder="Email address"
           value={formData.email}
           onChange={handleChange}
+          required
           className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
         />
         <input
@@ -80,6 +136,7 @@ const ContactForm: React.FC = () => {
           placeholder="Phone number"
           value={formData.phone}
           onChange={handleChange}
+          required
           className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
         />
       </div>
@@ -89,6 +146,7 @@ const ContactForm: React.FC = () => {
           name="service"
           value={formData.service}
           onChange={handleChange}
+          required
           className="w-full bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors appearance-none"
         >
           <option value="">Select a service</option>
@@ -113,15 +171,17 @@ const ContactForm: React.FC = () => {
         placeholder="Type your message here."
         value={formData.message}
         onChange={handleChange}
+        required
         rows={6}
         className="w-full bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
       />
 
       <button
         type="submit"
-        className="bg-[#00ff99] text-black px-6 py-3 rounded-md hover:bg-[#00cc7a] transition-colors font-mono"
+        disabled={isSubmitting}
+        className={`bg-[#00ff99] text-black px-6 py-3 rounded-md hover:bg-[#00cc7a] transition-colors font-mono disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center`}
       >
-        Send message
+        {isSubmitting ? "Sending..." : "Send message"}
       </button>
     </form>
   );
