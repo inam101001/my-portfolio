@@ -29,7 +29,7 @@ const ExperienceSection: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <ExperienceItem
-          period="2024 - Present"
+          period="2024 - 2025"
           title="Backend Developer"
           company="Binomical LLC"
         />
