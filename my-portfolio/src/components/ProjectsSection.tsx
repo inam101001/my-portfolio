@@ -17,9 +17,9 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: "02",
-      title: "Interior Design Portfolio",
+      title: "Mistle",
       description:
-        "Modern portfolio website for an interior design studio showcasing their work.",
+        "Mistle is an online diagram design tool built using the GoJS library. Offers a user-friendly interface for efficient diagram creation. Utilizes React, TailwindCSS, and GoJS on the client-side. Uses Node, NextJS, and MongoDB on the server-side.",
       technologies: ["React", "Styled Components", "Firebase"],
       image:
         "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1280",

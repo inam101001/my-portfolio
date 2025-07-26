@@ -10,7 +10,7 @@ const ContactInfo: React.FC = () => {
         </div>
         <div>
           <h3 className="text-white font-mono">Phone</h3>
-          <p className="text-gray-400">(+92) 348 620 5084</p>
+          <p className="text-gray-400">(+49) 1521 0926 948</p>
         </div>
       </div>
 
@@ -30,7 +30,7 @@ const ContactInfo: React.FC = () => {
         </div>
         <div>
           <h3 className="text-white font-mono">Address</h3>
-          <p className="text-gray-400">Punjab, Pakistan</p>
+          <p className="text-gray-400">Rhineland-Palatinate, Germany</p>
         </div>
       </div>
     </div>

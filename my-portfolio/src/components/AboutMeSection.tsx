@@ -24,9 +24,9 @@ const AboutMeSection: React.FC = () => {
       <div className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 p-6 rounded-lg space-y-4">
         <InfoItem label="Name" value="Inam Ul Haq" />
         <InfoItem label="Experience" value="2+ Years" />
-        <InfoItem label="Phone" value="(+92) 348 620 5084" />
+        <InfoItem label="Phone" value="(+49) 1521 0926 948" />
         <InfoItem label="Email" value="inam101001@gmail.com" />
-        <InfoItem label="Languages" value="English, Urdu" />
+        <InfoItem label="Languages" value="English" />
         <InfoItem label="Freelance" value="Available" />
       </div>
     </div>

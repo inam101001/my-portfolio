@@ -29,15 +29,16 @@ const EducationSection: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <EducationItem
+          period="2025 - 2027"
+          degree="Msc Web & Data Science"
+          institution="Universität Koblenz"
+        />
+        <EducationItem
           period="2020 - 2024"
           degree="BSc Computer Science"
           institution="University of Gujrat"
         />
-        <EducationItem
-          period="2018 - 2020"
-          degree="HSSC Computer Science"
-          institution="Punjab Group of Colleges"
-        />
+        
       </div>
     </div>
   );
