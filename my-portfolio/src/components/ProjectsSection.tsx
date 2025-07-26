@@ -10,7 +10,7 @@ const ProjectsSection: React.FC = () => {
       description:
         'Mistle is an online diagram design tool built using the GoJS library. Offers a user-friendly interface for efficient diagram creation. Utilizes React, TailwindCSS, and GoJS on the client-side. Uses Node, NextJS, and MongoDB on the server-side.',
       technologies: ['Next.js', 'Tailwind.css', 'Node.js', 'GoJS', 'MongoDB'],
-      image: '../src/assets/mistle.jpg',
+      image: '/mistle.jpg',
       liveUrl: 'https://mistle-1rft.vercel.app/',
       githubUrl: 'https://github.com/inam101001/Mistle',
     },
@@ -20,7 +20,7 @@ const ProjectsSection: React.FC = () => {
       description:
         'RS Calibration is a company that provides calibration services for various instruments. It is built using React, Next.js, Tailwind.css, and Email.js.',
       technologies: ['React', 'Next.js', 'Tailwind.css', 'Email.js'],
-      image: '../src/assets/rscalibration.jpg',
+      image: '/rscalibration.jpg',
       liveUrl: 'https://www.rscalibration.com.au/',
       githubUrl: 'https://github.com/inam101001/rs-calibration',
     },
