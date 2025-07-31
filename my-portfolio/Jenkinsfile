@@ -8,13 +8,6 @@ pipeline {
     }
     
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Checking out code from GitHub...'
-                git branch: 'main', url: 'https://github.com/inam101001/my-portfolio.git'
-            }
-        }
-        
         stage('Setup Node.js') {
             steps {
                 echo 'Setting up Node.js environment...'
