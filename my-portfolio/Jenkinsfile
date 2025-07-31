@@ -8,15 +8,16 @@ pipeline {
     }
     
     stages {
-        stage('Setup Node.js') {
+        stage('Verify Environment') {
             steps {
-                echo 'Setting up Node.js environment...'
-                sh '''
-                    source ~/.bashrc
-                    nvm use ${NODE_VERSION}
-                    node --version
-                    npm --version
-                '''
+                echo 'Checking environment setup...'
+                    sh '''
+                        echo "Current user: $(whoami)"
+                        echo "Working directory: $(pwd)"
+                        echo "Node.js version: $(/usr/local/bin/node --version)"
+                        echo "npm version: $(/usr/local/bin/npm --version)"
+                        echo "AWS CLI version: $(aws --version)"
+                        '''
             }
         }
         
