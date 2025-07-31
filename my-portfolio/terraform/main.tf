@@ -128,3 +128,17 @@ resource "aws_cloudfront_distribution" "website_distribution" {
 
   tags = local.common_tags
 }
+
+
+# Monitoring Module
+module "monitoring" {
+  source = "./modules/monitoring"
+  
+  project_name               = var.project_name
+  environment               = var.environment
+  cloudfront_distribution_id = aws_cloudfront_distribution.website_distribution.id
+  s3_bucket_name            = aws_s3_bucket.website_bucket.bucket
+  alert_email               = "inam101001@gmail.com"  
+  aws_region                = var.aws_region
+  common_tags               = local.common_tags
+}

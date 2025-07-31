@@ -27,3 +27,24 @@ output "cloudfront_domain_name" {
   description = "CloudFront distribution domain name"
   value       = aws_cloudfront_distribution.website_distribution.domain_name
 }
+
+# Monitoring Module Outputs
+output "monitoring_dashboard_url" {
+  description = "CloudWatch monitoring dashboard URL"
+  value       = module.monitoring.dashboard_url
+}
+
+output "monitoring_sns_topic" {
+  description = "SNS topic ARN for monitoring alerts"
+  value       = module.monitoring.sns_topic_arn
+}
+
+output "monitoring_log_group" {
+  description = "CloudWatch log group for application logs" 
+  value       = module.monitoring.log_group_name
+}
+
+output "monitoring_dashboard_name" {
+  description = "CloudWatch dashboard name"
+  value       = module.monitoring.dashboard_name
+}
