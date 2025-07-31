@@ -123,8 +123,13 @@ resource "aws_cloudfront_distribution" "website_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+   acm_certificate_arn      = module.domain.ssl_certificate_arn
+   ssl_support_method       = "sni-only"
+   minimum_protocol_version = "TLSv1.2_2021"
   }
+
+  # Add custom domain aliases
+  aliases = [module.domain.domain_name, "www.${module.domain.domain_name}"]
 
   tags = local.common_tags
 }
@@ -141,4 +146,17 @@ module "monitoring" {
   alert_email               = "inam101001@gmail.com"  
   aws_region                = var.aws_region
   common_tags               = local.common_tags
+}
+
+# Domain Module
+module "domain" {
+  source = "./modules/domain"
+  
+  domain_name                = "inamulhaq.dev"
+  cloudfront_distribution_id = aws_cloudfront_distribution.website_distribution.id
+  cloudfront_domain_name     = aws_cloudfront_distribution.website_distribution.domain_name
+  aws_region                 = var.aws_region
+  environment               = var.environment
+  common_tags               = local.common_tags
+  create_www_subdomain      = true
 }

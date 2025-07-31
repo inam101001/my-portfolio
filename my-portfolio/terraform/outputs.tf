@@ -48,3 +48,34 @@ output "monitoring_dashboard_name" {
   description = "CloudWatch dashboard name"
   value       = module.monitoring.dashboard_name
 }
+
+# Domain Module Outputs
+output "domain_name" {
+  description = "Custom domain name"
+  value       = module.domain.domain_name
+}
+
+output "route53_zone_id" {
+  description = "Route 53 hosted zone ID"
+  value       = module.domain.route53_zone_id
+}
+
+output "ssl_certificate_arn" {
+  description = "SSL certificate ARN"
+  value       = module.domain.ssl_certificate_arn
+}
+
+output "nameservers_for_namecheap" {
+  description = "Name servers to configure in Namecheap DNS"
+  value       = module.domain.nameservers_for_namecheap
+}
+
+output "custom_domain_url" {
+  description = "Your custom domain URL"
+  value       = "https://${module.domain.domain_name}"
+}
+
+output "www_domain_url" {
+  description = "WWW subdomain URL"
+  value       = "https://www.${module.domain.domain_name}"
+}
