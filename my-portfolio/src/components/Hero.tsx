@@ -23,10 +23,14 @@ const Hero: React.FC = () => {
           </p>
 
           <div className="flex gap-4 mt-6">
-            <button className="px-6 py-2 border border-[#00ff99] text-[#00ff99] rounded-full hover:bg-[#00ff99]/10 transition-colors flex items-center gap-2">
+            <a
+              href="/InamUlHaq_CV.pdf"
+              download="InamUlHaq_CV.pdf"
+              className="px-6 py-2 border border-[#00ff99] text-[#00ff99] rounded-full hover:bg-[#00ff99]/10 transition-colors flex items-center gap-2"
+            >
               <Download size={18} />
               DOWNLOAD CV
-            </button>
+            </a>
           </div>
 
           <SocialLinks />
@@ -36,18 +40,18 @@ const Hero: React.FC = () => {
         <Terminal
           command="cat introduction.txt"
           output={[
-            "$ whoami",
-            "Full Stack Developer specializing in:",
-            "- Frontend Development (React, Next.js, Tailwind CSS)",
-            "- Backend Development (Node.js, Nest.js, Express.js)",
-            "- DevOps & Cloud Architecture (AWS, GCP, Azure, Automation, Linux)",
-            "",
-            "$ skills --list",
-            "→ JavaScript/TypeScript",
-            "→ React/Next.js",
-            "→ Node.js/Nest.js",
-            "→ MongoDB/ArangoDB",
-            "→ Docker/Kubernetes/Jenkins",
+            '$ whoami',
+            'Full Stack Developer specializing in:',
+            '- Frontend Development (React, Next.js, Tailwind CSS)',
+            '- Backend Development (Node.js, Nest.js, Express.js)',
+            '- DevOps & Cloud Architecture (AWS, GCP, Azure, Automation, Linux)',
+            '',
+            '$ skills --list',
+            '→ JavaScript/TypeScript',
+            '→ React/Next.js',
+            '→ Node.js/Nest.js',
+            '→ MongoDB/ArangoDB',
+            '→ Docker/Kubernetes/Jenkins',
           ]}
         />
       </div>
