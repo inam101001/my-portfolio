@@ -28,3 +28,25 @@ resource "aws_route53_record" "www" {
 
   depends_on = [aws_route53_record.root]
 }
+
+# Grafana subdomain
+resource "aws_route53_record" "grafana" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "grafana.${var.domain_name}"
+  type    = "A"
+  ttl     = 300
+  records = [aws_eip.portfolio_eip.public_ip]
+
+  depends_on = [aws_eip.portfolio_eip]
+}
+
+# Prometheus subdomain
+resource "aws_route53_record" "prometheus" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "prometheus.${var.domain_name}"
+  type    = "A"
+  ttl     = 300
+  records = [aws_eip.portfolio_eip.public_ip]
+
+  depends_on = [aws_eip.portfolio_eip]
+}
