@@ -1,0 +1,58 @@
+---
+- name: Setup EC2 Instance for Portfolio Deployment
+  hosts: webservers
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Update all packages
+      dnf:
+        name: "*"
+        state: latest
+        update_cache: yes
+
+    - name: Install required packages
+      dnf:
+        name:
+          - docker
+          - git
+          - python3-pip
+        state: present
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add ec2-user to docker group
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
+    - name: Install Docker Compose
+      get_url:
+        url: https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: '0755'
+
+    - name: Create application directory
+      file:
+        path: /home/ec2-user/app
+        state: directory
+        owner: ec2-user
+        group: ec2-user
+        mode: '0755'
+
+    - name: Install certbot for SSL
+      dnf:
+        name:
+          - certbot
+          - python3-certbot-dns-route53
+        state: present
+
+    - name: Reboot to apply group changes (if needed)
+      reboot:
+        reboot_timeout: 300
+      when: ansible_facts.services['docker'].state == 'running'
