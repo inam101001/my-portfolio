@@ -26,8 +26,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./docker/Dockerfile
+          context: ./my-portfolio
+          file: ./my-portfolio/docker/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/my-portfolio:latest
