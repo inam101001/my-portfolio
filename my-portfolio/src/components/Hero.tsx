@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Hello I'm
             <br />
-            <span className="text-[#00ff99]">Inam UUl Haq</span>
+            <span className="text-[#00ff99]">Inam Ul Haq</span>
           </h1>
           <p className="text-gray-400 max-w-xl">
             I create modern and user-friendly digital solutions, using my skills
