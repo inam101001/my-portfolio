@@ -50,8 +50,8 @@ jobs:
           script: |
             cd /home/ec2-user/app/my-portfolio
             git pull origin main
-            docker-compose pull
-            docker-compose up -d
+            docker-compose down
+            docker-compose up -d --build
             docker image prune -f
 
       - name: Verify deployment
