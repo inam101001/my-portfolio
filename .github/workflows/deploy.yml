@@ -61,5 +61,20 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
+            cd /home/ec2-user/app/my-portfolio
             docker-compose ps
-            curl -f https://inamulhaq.dev || exit 1
+            
+            # Wait for website to be ready (max 30 seconds)
+            echo "Waiting for website to be ready..."
+            for i in {1..6}; do
+              if curl -f -k https://localhost > /dev/null 2>&1; then
+                echo "✅ Website is up and running!"
+                exit 0
+              fi
+              echo "⏳ Attempt $i/6: Waiting 5 seconds..."
+              sleep 5
+            done
+            
+            echo "❌ Website failed to start within 30 seconds"
+            docker-compose logs nginx-app
+            exit 1
