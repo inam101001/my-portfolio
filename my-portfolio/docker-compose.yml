@@ -62,6 +62,13 @@ services:
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_SERVER_ROOT_URL=https://grafana.inamulhaq.dev
       - GF_INSTALL_PLUGINS=
+      # DISABLE PLUGIN AUTO-INSTALLATION
+      - GF_PLUGINS_ENABLE_ALPHA=false
+      - GF_PLUGIN_ADMIN_ENABLED=false
+      # SKIP PLUGIN UPDATES ON STARTUP
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_ANALYTICS_CHECK_FOR_UPDATES=false
+      - GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES=false
     networks:
       - monitoring
     restart: unless-stopped
