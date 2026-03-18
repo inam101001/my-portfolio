@@ -9,29 +9,41 @@ const ProjectsSection: React.FC = () => {
       id: "01",
       title: "Microservices Banking Application",
       description:
-        "Architected and deployed an event-driven microservices platform on Kubernetes (KIND) with 4 FastAPI services and 17+ pods. Implemented GitOps CI/CD pipeline using GitHub Actions and ArgoCD with automated Docker builds and Trivy security scanning. Deployed full observability stack with Prometheus and Grafana for metrics collection.",
-      technologies: ["FastAPI", "Kubernetes", "Docker", "ArgoCD", "GitHub Actions", "Prometheus", "Grafana", "RabbitMQ", "PostgreSQL"],
-      image: "", // We'll use 3D artifact instead
-      liveUrl: "https://github.com/inam101001", // Default to GitHub if no specific URL
+        "Architected and deployed an event-driven microservices platform on Kubernetes (KIND) with 4 FastAPI services and 17+ pods. Implemented GitOps CI/CD pipeline using GitHub Actions and ArgoCD with automated Docker builds and Trivy security scanning.",
+      technologies: ["Kubernetes", "Docker", "ArgoCD", "GitHub Actions", "Prometheus", "Grafana", "RabbitMQ", "PostgreSQL", "Terraform"],
+      diagrams: [
+        { id: "arch-1", title: "Cloud Infrastructure & Routing", type: "banking_architecture", description: "Path-based routing with NGINX Ingress and Service discovery on KIND." },
+        { id: "pipe-1", title: "Continuous Delivery (CI)", type: "banking_pipeline", description: "Smart builds, Docker image tags, and Trivy security scanning via GitHub Actions." },
+        { id: "ops-1",  title: "GitOps State Sync (CD)", type: "banking_gitops", description: "Continuous Deployment using ArgoCD for self-healing and zero-downtime rollouts." },
+        { id: "mon-1",  title: "Observability Stack", type: "banking_monitoring", description: "Distributed tracing, Prometheus metrics collection, and Grafana visualization." }
+      ],
+      liveUrl: "https://github.com/inam101001",
       githubUrl: "https://github.com/inam101001",
     },
     {
       id: "02",
-      title: "Mistle – Online Diagrams Design Tool (Academic)",
+      title: "Mistle– Online Diagrams Design Tool (Academic)",
       description:
-        "Containerized a Next.js application using Docker and deployed on AWS EC2 with nginx reverse proxy configuration. Built CI/CD pipeline using GitHub Actions for automated testing, building, and zero-downtime deployments. Provisioned cloud infrastructure using Terraform IaC for AWS services (EC2, Route 53, CloudFront, ACM).",
-      technologies: ["Next.js", "Docker", "AWS", "Terraform", "GitHub Actions", "Prometheus", "Grafana"],
-      image: "",
+        "Containerized Next.js application using Docker builds and deployed on AWS EC2 with nginx reverse proxy configuration. Built CI/CD pipeline using GitHub Actions for automated testing, building, and zero-downtime deployments. Provisioned cloud infrastructure using Terraform IaC for AWS resources (EC2, Route 53, CloudFront, ACM).",
+      technologies: ["Next.js", "Docker", "AWS", "Terraform", "GitHub Actions", "Prometheus", "Grafana", "Nginx"],
+      diagrams: [
+        { id: "mistle-1", title: "Full DevOps Lifecycle", type: "mistle_lifecycle", description: "End-to-end automation from Source Control to Production monitoring." },
+        { id: "mistle-2", title: "AWS Cloud Infrastructure", type: "mistle_aws", description: "Highly available routing via Route 53 and CloudFront with ACM SSL termination." },
+        { id: "mistle-3", title: "CI/CD Pipeline Flow", type: "mistle_pipeline", description: "Multi-stage Docker builds and automated SSH-triggered deployment cycles." },
+        { id: "mistle-4", title: "Monitoring & Observability", type: "mistle_monitoring", description: "Prometheus metrics collection from app, server, and proxy with Grafana dashboards." }
+      ],
       liveUrl: "https://mistle-1rft.vercel.app/",
       githubUrl: "https://github.com/inam101001/Mistle",
     },
     {
       id: "03",
-      title: "Personal Portfolio – AWS Infrastructure",
+      title: "Personal Portfolio – AWS CI/CD",
       description:
-        "Deployed a React application with Jenkins CI/CD pipeline on AWS, achieving automated 2-minute deployment cycles. Implemented Infrastructure as Code using Terraform to provision and manage AWS services (S3, CloudFront, Route 53, EC2, ACM). Configured CloudWatch monitoring with SNS alerting for proactive incident response.",
-      technologies: ["React", "AWS", "Terraform", "Jenkins", "CloudWatch", "CloudFront", "S3", "Route 53"],
-      image: "",
+        "Deployed a React application with Jenkins CI/CD pipeline on AWS. Implemented Infrastructure as Code using Terraform to provision CloudFront, Route 53, and S3.",
+      technologies: ["React", "AWS", "Terraform", "Jenkins", "CloudWatch"],
+      diagrams: [
+        { id: "aws-2", title: "Portfolio Pipeline", type: "aws_infra" }
+      ],
       liveUrl: "https://inamulhaq.dev",
       githubUrl: "https://github.com/inam101001/rs-calibration",
     },
@@ -46,11 +58,10 @@ const ProjectsSection: React.FC = () => {
             <span className="text-[#00ff99] font-mono text-xs tracking-[0.2em] uppercase">Impact</span>
           </div>
           <h2 className="text-4xl font-bold text-white">
-            DevOps & Cloud{" "}
             <span className="text-[#00ff99]">Projects</span>
           </h2>
           <p className="text-gray-500 font-mono text-xs mt-3 tracking-wide">
-            // practical implementations of scalable infrastructure and automation
+            // architecture, infrastructure & automation
           </p>
         </div>
       </ScrollReveal>
