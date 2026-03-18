@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Send, Loader2, CheckCircle, XCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const ContactForm: React.FC = () => {
@@ -19,15 +19,12 @@ const ContactForm: React.FC = () => {
     message: "",
   });
 
+  const [focused, setFocused] = useState<string | null>(null);
+
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,36 +36,21 @@ const ContactForm: React.FC = () => {
 
     try {
       await emailjs.sendForm(
-        "service_8jh55bf", // Replace with your EmailJS service ID
-        "template_y855p8f", // Replace with your EmailJS template ID
+        "service_8jh55bf",
+        "template_y855p8f",
         form.current,
-        "a7Ke8zezFnlTyil-n" // Replace with your EmailJS public key
+        "a7Ke8zezFnlTyil-n"
       );
 
       setSubmitStatus({
         type: "success",
-        message: "Message sent successfully! I will get back to you soon.",
+        message: "Message sent! I'll get back to you soon.",
       });
 
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: "",
-      });
+      setFormData({ firstName: "", lastName: "", email: "", phone: "", service: "", message: "" });
     } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "An unexpected error occurred.";
-
-      setSubmitStatus({
-        type: "error",
-        message: `Failed to send message. ${errorMessage}`,
-      });
+      const msg = error instanceof Error ? error.message : "An unexpected error occurred.";
+      setSubmitStatus({ type: "error", message: `Failed to send. ${msg}` });
     } finally {
       setIsSubmitting(false);
     }
@@ -82,111 +64,168 @@ const ContactForm: React.FC = () => {
     "UI/UX Design",
   ];
 
-  return (
-    <form ref={form} onSubmit={handleSubmit} className="space-y-6 max-w-3xl">
-      <h2 className="text-[#00ff99] text-4xl mb-4 font-mono">
-        Let's work together
-      </h2>
-      <p className="text-gray-400 mb-8">
-        Sometimes there is a silver bullet for boosting software engineering
-        productivity. But you need to shoot the right person.
-      </p>
+  const inputClass = (name: string) => `
+    form-input
+    ${focused === name ? "border-[#00ff99]/60 shadow-[0_0_0_3px_rgba(0,255,153,0.08)]" : ""}
+  `;
 
+  return (
+    <form ref={form} onSubmit={handleSubmit} className="space-y-5" noValidate>
+      {/* Heading */}
+      <div>
+        <div className="flex items-center gap-3 mb-2">
+          <div className="h-px w-8 bg-[#00ff99]" />
+          <span className="text-[#00ff99] font-mono text-xs tracking-[0.2em] uppercase">Contact</span>
+        </div>
+        <h2 className="text-3xl font-bold text-white mb-1">
+          Let's work{" "}
+          <span className="text-[#00ff99]">together</span>
+        </h2>
+        <p className="text-gray-500 text-sm font-mono">
+          // drop me a message and I'll respond within 24h
+        </p>
+      </div>
+
+      {/* Status */}
       {submitStatus.type && (
         <div
-          className={`p-4 rounded-md ${
+          className={`flex items-center gap-3 p-4 rounded-xl text-sm font-mono ${
             submitStatus.type === "success"
-              ? "bg-[#00ff99]/10 text-[#00ff99]"
-              : "bg-red-500/10 text-red-500"
+              ? "bg-[#00ff99]/08 border border-[#00ff99]/25 text-[#00ff99]"
+              : "bg-red-500/08 border border-red-500/25 text-red-400"
           }`}
         >
+          {submitStatus.type === "success" ? (
+            <CheckCircle size={16} className="shrink-0" />
+          ) : (
+            <XCircle size={16} className="shrink-0" />
+          )}
           {submitStatus.message}
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <input
-          type="text"
-          name="firstName"
-          placeholder="Firstname"
-          value={formData.firstName}
-          onChange={handleChange}
-          required
-          className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Lastname"
-          value={formData.lastName}
-          onChange={handleChange}
-          required
-          className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
-        />
+      {/* Name row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="relative">
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="First name"
+            value={formData.firstName}
+            onChange={handleChange}
+            onFocus={() => setFocused("firstName")}
+            onBlur={() => setFocused(null)}
+            required
+            className={inputClass("firstName")}
+          />
+        </div>
+        <div className="relative">
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder="Last name"
+            value={formData.lastName}
+            onChange={handleChange}
+            onFocus={() => setFocused("lastName")}
+            onBlur={() => setFocused(null)}
+            required
+            className={inputClass("lastName")}
+          />
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Contact row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <input
           type="email"
           name="email"
+          id="email"
           placeholder="Email address"
           value={formData.email}
           onChange={handleChange}
+          onFocus={() => setFocused("email")}
+          onBlur={() => setFocused(null)}
           required
-          className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
+          className={inputClass("email")}
         />
         <input
           type="tel"
           name="phone"
-          placeholder="Phone number"
+          id="phone"
+          placeholder="Phone (optional)"
           value={formData.phone}
           onChange={handleChange}
-          required
-          className="bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
+          onFocus={() => setFocused("phone")}
+          onBlur={() => setFocused(null)}
+          className={inputClass("phone")}
         />
       </div>
 
+      {/* Service */}
       <div className="relative">
         <select
           name="service"
+          id="service"
           value={formData.service}
           onChange={handleChange}
+          onFocus={() => setFocused("service")}
+          onBlur={() => setFocused(null)}
           required
-          className="w-full bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors appearance-none"
+          className={`${inputClass("service")} appearance-none`}
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
         >
-          <option value="">Select a service</option>
-          {services.map((service) => (
-            <option
-              className="bg-black backdrop-blur-sm border border-[#00ff99]"
-              key={service}
-              value={service}
-            >
-              {service}
+          <option value="" disabled>Select a service</option>
+          {services.map((s) => (
+            <option key={s} value={s} className="bg-black text-white">
+              {s}
             </option>
           ))}
         </select>
         <ChevronDown
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#00ff99]"
-          size={20}
+          size={16}
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#00ff99]/60 pointer-events-none"
         />
       </div>
 
+      {/* Message */}
       <textarea
         name="message"
-        placeholder="Type your message here."
+        id="message"
+        placeholder="Tell me about your project..."
         value={formData.message}
         onChange={handleChange}
+        onFocus={() => setFocused("message")}
+        onBlur={() => setFocused(null)}
         required
-        rows={6}
-        className="w-full bg-black/50 backdrop-blur-sm border border-[#00ff99]/20 rounded-md p-3 text-white focus:border-[#00ff99] focus:outline-none focus:ring-1 focus:ring-[#00ff99] transition-colors"
+        rows={5}
+        className={`${inputClass("message")} resize-none`}
       />
 
+      {/* Submit */}
       <button
         type="submit"
+        id="contact-submit-btn"
         disabled={isSubmitting}
-        className={`bg-[#00ff99] text-black px-6 py-3 rounded-md hover:bg-[#00cc7a] transition-colors font-mono disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center`}
+        className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full font-bold font-mono text-sm
+                   bg-[#00ff99] text-black
+                   hover:bg-[#00ff99]/90 hover:shadow-[0_0_30px_rgba(0,255,153,0.4)]
+                   active:scale-95 hover:scale-105
+                   disabled:opacity-50 disabled:pointer-events-none
+                   transition-all duration-300"
       >
-        {isSubmitting ? "Sending..." : "Send message"}
+        {isSubmitting ? (
+          <>
+            <Loader2 size={15} className="animate-spin" />
+            Sending...
+          </>
+        ) : (
+          <>
+            <Send size={15} />
+            Send Message
+          </>
+        )}
       </button>
     </form>
   );
