@@ -3,6 +3,7 @@ version: '3.8'
 services:
   # Main Application - Portfolio Website
   nginx-app:
+    image: ${DOCKERHUB_USERNAME}/my-portfolio:${IMAGE_TAG:-latest}
     build:
       context: .
       dockerfile: docker/Dockerfile

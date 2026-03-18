@@ -17,6 +17,7 @@
           - docker
           - git
           - python3-pip
+          - curl
         state: present
 
     - name: Start and enable Docker service
@@ -30,6 +31,7 @@
         name: ec2-user
         groups: docker
         append: yes
+      register: docker_group_added
 
     - name: Install Docker Compose
       get_url:
@@ -55,4 +57,4 @@
     - name: Reboot to apply group changes (if needed)
       reboot:
         reboot_timeout: 300
-      when: ansible_facts.services['docker'].state == 'running'
+      when: docker_group_added.changed

@@ -4,11 +4,9 @@ FROM node:22-alpine AS builder
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Optimize layer caching by copying only package files first
 COPY package*.json ./
-
-# Install dependencies
-RUN npm ci 
+RUN npm ci --quiet
 
 # Copy source code
 COPY . .
@@ -29,8 +27,8 @@ COPY docker/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80 443
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost/ || exit 1
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
