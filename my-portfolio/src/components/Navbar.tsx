@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Code2, User, Briefcase, Mail, Home } from "lucide-react";
+import { User, Briefcase, Mail, Home } from "lucide-react";
 
 interface NavItemProps {
   icon: React.ReactNode;
