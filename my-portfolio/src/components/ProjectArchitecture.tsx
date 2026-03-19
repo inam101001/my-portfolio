@@ -1,6 +1,7 @@
 import React from "react";
 import * as Banking from "./diagrams/BankingDiagrams";
 import * as Mistle from "./diagrams/MistleDiagrams";
+import * as Portfolio from "./diagrams/PortfolioDiagrams";
 
 interface DiagramProps {
   type: string;
@@ -21,13 +22,17 @@ const ProjectArchitecture: React.FC<DiagramProps> = ({ type }) => {
       {type === 'mistle_pipeline' && <Mistle.MistlePipeline />}
       {type === 'mistle_monitoring' && <Mistle.MistleMonitoring />}
 
+      {/* ───── PORTFOLIO DIAGRAMS ───── */}
+      {type === 'portfolio_aws' && <Portfolio.PortfolioAWS />}
+      {type === 'portfolio_cicd' && <Portfolio.PortfolioCICD />}
+
       {/* ───── GENERAL ARCHITECTURE (FALLBACK) ───── */}
-      {type === 'aws_infra' && <Mistle.MistleAWS />}
+      {type === 'aws_infra' && <Portfolio.PortfolioAWS />}
 
       {/* ───── LOADING / FALLBACK ───── */}
       {!['banking_architecture', 'banking_pipeline', 'banking_gitops', 'banking_monitoring', 
          'mistle_lifecycle', 'mistle_aws', 'mistle_pipeline', 'mistle_monitoring', 
-         'aws_infra'].includes(type) && (
+         'portfolio_aws', 'portfolio_cicd', 'aws_infra'].includes(type) && (
         <div className="text-gray-700 font-mono italic text-sm">Diagram in high-res preparation...</div>
       )}
     </div>

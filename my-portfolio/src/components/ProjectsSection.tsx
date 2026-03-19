@@ -37,15 +37,16 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: "03",
-      title: "Personal Portfolio – AWS CI/CD",
+      title: "Personal Portfolio – Optimized AWS CI/CD",
       description:
-        "Deployed a React application with Jenkins CI/CD pipeline on AWS. Implemented Infrastructure as Code using Terraform to provision CloudFront, Route 53, and S3.",
-      technologies: ["React", "AWS", "Terraform", "Jenkins", "CloudWatch"],
+        "Engineered a high-performance portfolio ecosystem with an automated CI/CD pipeline. Implemented Docker multi-stage builds and automated security auditing with Trivy. Provisioned cloud infrastructure including CloudFront, Route 53, and EC2 via Terraform IaC.",
+      technologies: ["React", "AWS", "Terraform", "GitHub Actions", "Docker", "Nginx", "Trivy", "Prometheus"],
       diagrams: [
-        { id: "aws-2", title: "Portfolio Pipeline", type: "aws_infra" }
+        { id: "portfolio-1", title: "Cloud Infrastructure", type: "portfolio_aws", description: "AWS network topology featuring WAF, CloudFront CDN, and EC2 compute." },
+        { id: "portfolio-2", title: "CI/CD Lifecycle", type: "portfolio_cicd", description: "Automated pipeline from local commit to DockerHub registry and production rollout." }
       ],
       liveUrl: "https://inamulhaq.dev",
-      githubUrl: "https://github.com/inam101001/rs-calibration",
+      githubUrl: "https://github.com/inam101001/my-portfolio",
     },
   ];
 
