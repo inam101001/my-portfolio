@@ -54,6 +54,34 @@
           - python3-certbot-dns-route53
         state: present
 
+    - name: Create certbot deploy-hook directory
+      file:
+        path: /etc/letsencrypt/renewal-hooks/deploy
+        state: directory
+        mode: '0755'
+
+    - name: Add certbot hook to reload nginx container
+      copy:
+        dest: /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
+        content: |
+          #!/bin/bash
+          docker exec portfolio-app nginx -s reload
+        mode: '0755'
+
+    - name: Enable and start certbot-renew timer
+      systemd:
+        name: certbot-renew.timer
+        state: started
+        enabled: yes
+      ignore_errors: yes
+
+    - name: Add fallback cron job for certbot renewal
+      cron:
+        name: "Certbot automatic renewal"
+        job: "certbot renew -q"
+        minute: "0"
+        hour: "0,12"
+
     - name: Reboot to apply group changes (if needed)
       reboot:
         reboot_timeout: 300
