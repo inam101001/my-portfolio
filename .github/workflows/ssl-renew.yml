@@ -1,0 +1,28 @@
+name: Renew SSL Certificate
+
+on:
+  schedule:
+    # Run once a week on Sunday at midnight
+    - cron: '0 0 * * 0'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  renew-ssl:
+    name: Renew SSL and Reload Nginx
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Renew Certbot Certificate via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            echo "Attempting to renew Let's Encrypt certificates..."
+            sudo certbot renew
+            
+            echo "Reloading Nginx container to apply new certificates..."
+            docker exec portfolio-app nginx -s reload
+            
+            echo "SSL Renewal process complete."
