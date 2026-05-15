@@ -71,28 +71,62 @@ jobs:
     needs: build-and-push
     
     steps:
-      - name: Deploy via SSH
+      - name: Bootstrap & Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          command_timeout: 15m
           script: |
-            cd /home/ec2-user/app/my-portfolio
-            
-            # Export environment variables for Docker Compose
+            set -e
+
+            # ── 1. Install Docker if not present ──────────────────────────
+            if ! command -v docker &> /dev/null; then
+              echo "Docker not found – installing..."
+              sudo dnf update -y
+              sudo dnf install -y docker git
+              sudo systemctl enable --now docker
+              sudo usermod -aG docker $USER
+              # Install Docker Compose v2 plugin
+              sudo mkdir -p /usr/local/lib/docker/cli-plugins
+              sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+                -o /usr/local/lib/docker/cli-plugins/docker-compose
+              sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+              # Also create docker-compose shim for legacy scripts
+              echo '#!/bin/sh\nexec docker compose "$@"' | sudo tee /usr/local/bin/docker-compose
+              sudo chmod +x /usr/local/bin/docker-compose
+              echo "Docker installed successfully."
+            else
+              echo "Docker already installed: $(docker --version)"
+            fi
+
+            # ── 2. Clone repo on first deploy, pull on subsequent ones ────
+            APP_DIR="/home/$USER/app/my-portfolio"
+            if [ ! -d "$APP_DIR/.git" ]; then
+              echo "App directory not found – cloning repository..."
+              mkdir -p /home/$USER/app
+              git clone https://github.com/${{ github.repository }}.git "$APP_DIR"
+            else
+              echo "Pulling latest code..."
+              cd "$APP_DIR" && git pull origin main
+            fi
+
+            # ── 3. Deploy ─────────────────────────────────────────────────
+            cd "$APP_DIR/my-portfolio"
+
             export DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
             export IMAGE_TAG=${{ github.sha }}
-            
-            # Pull latest code and images
-            git pull origin main
+
+            # Login to DockerHub
+            echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
             docker-compose pull nginx-app
-            
-            # Restart with zero-ish downtime 
             docker-compose up -d
-            
-            # Cleanup old images to prevent disk space issues
+
+            # Cleanup old images
             docker image prune -af --filter "until=24h"
+            echo "Deployment complete."
 
       - name: Verify Health
         uses: appleboy/ssh-action@v1.0.3
@@ -101,13 +135,12 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ec2-user/app/my-portfolio
             echo "Waiting for service to stabilize..."
-            sleep 10
-            if curl -f -k https://localhost > /dev/null 2>&1; then
-              echo "✅ Success: Website is active."
+            sleep 15
+            if curl -sf http://localhost > /dev/null 2>&1; then
+              echo "✅ Success: Website is active on port 80."
             else
               echo "❌ Error: Healthcheck failed."
-              docker-compose logs --tail=50 nginx-app
+              docker logs portfolio-app --tail=50
               exit 1
             fi
