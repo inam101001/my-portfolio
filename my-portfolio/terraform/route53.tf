@@ -7,26 +7,30 @@ resource "aws_route53_zone" "main" {
   }
 }
 
-# A Record - Point domain to EC2 Elastic IP
+# A Record - Point root domain to CloudFront
 resource "aws_route53_record" "root" {
   zone_id = aws_route53_zone.main.zone_id
   name    = var.domain_name
   type    = "A"
-  ttl     = 300
-  records = [aws_eip.portfolio_eip.public_ip]
 
-  depends_on = [aws_eip.portfolio_eip]
+  alias {
+    name                   = aws_cloudfront_distribution.portfolio.domain_name
+    zone_id                = aws_cloudfront_distribution.portfolio.hosted_zone_id
+    evaluate_target_health = false
+  }
 }
 
-# WWW CNAME Record (optional)
+# WWW A Record - Also point to CloudFront
 resource "aws_route53_record" "www" {
   zone_id = aws_route53_zone.main.zone_id
   name    = "www.${var.domain_name}"
-  type    = "CNAME"
-  ttl     = 300
-  records = [var.domain_name]
+  type    = "A"
 
-  depends_on = [aws_route53_record.root]
+  alias {
+    name                   = aws_cloudfront_distribution.portfolio.domain_name
+    zone_id                = aws_cloudfront_distribution.portfolio.hosted_zone_id
+    evaluate_target_health = false
+  }
 }
 
 # Grafana subdomain
@@ -44,6 +48,17 @@ resource "aws_route53_record" "grafana" {
 resource "aws_route53_record" "prometheus" {
   zone_id = aws_route53_zone.main.zone_id
   name    = "prometheus.${var.domain_name}"
+  type    = "A"
+  ttl     = 300
+  records = [aws_eip.portfolio_eip.public_ip]
+
+  depends_on = [aws_eip.portfolio_eip]
+}
+
+# Origin subdomain - used by CloudFront as origin hostname (CF rejects raw IPs)
+resource "aws_route53_record" "origin" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "origin.${var.domain_name}"
   type    = "A"
   ttl     = 300
   records = [aws_eip.portfolio_eip.public_ip]

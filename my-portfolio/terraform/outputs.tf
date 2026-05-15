@@ -23,6 +23,16 @@ output "acm_certificate_arn" {
   value       = aws_acm_certificate.portfolio_cert.arn
 }
 
+output "cloudfront_domain" {
+  description = "CloudFront distribution domain name"
+  value       = aws_cloudfront_distribution.portfolio.domain_name
+}
+
+output "cloudfront_distribution_id" {
+  description = "CloudFront distribution ID (use this to invalidate cache)"
+  value       = aws_cloudfront_distribution.portfolio.id
+}
+
 output "security_group_id" {
   description = "Security Group ID"
   value       = aws_security_group.portfolio_sg.id

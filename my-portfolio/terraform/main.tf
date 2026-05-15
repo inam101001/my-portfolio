@@ -1,4 +1,6 @@
-# Get latest Amazon Linux 2023 AMI
+# Pinned AMI - using a fixed AMI prevents EC2 from being replaced on every
+# terraform apply when a newer Amazon Linux 2023 AMI is released.
+# To intentionally upgrade, update this value in variables.tf.
 data "aws_ami" "amazon_linux_2023" {
   most_recent = true
   owners      = ["amazon"]
@@ -50,6 +52,11 @@ resource "aws_instance" "portfolio" {
   }
 
   user_data = file("${path.module}/userdata.sh")
+
+  lifecycle {
+    # Ignore AMI changes to prevent unintended EC2 replacement
+    ignore_changes = [ami, user_data]
+  }
 
   tags = {
     Name = "${var.project_name}-server"
