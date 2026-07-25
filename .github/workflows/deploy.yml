@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: './my-portfolio/package-lock.json'
+          cache-dependency-path: './package-lock.json'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -38,8 +38,8 @@ jobs:
       - name: Build Docker image (local only for scan)
         uses: docker/build-push-action@v5
         with:
-          context: ./my-portfolio
-          file: ./my-portfolio/docker/Dockerfile
+          context: .
+          file: ./docker/Dockerfile
           load: true # Load into local docker runtime
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-portfolio:scan-temp
 
@@ -56,8 +56,8 @@ jobs:
       - name: Push Docker image to DockerHub
         uses: docker/build-push-action@v5
         with:
-          context: ./my-portfolio
-          file: ./my-portfolio/docker/Dockerfile
+          context: .
+          file: ./docker/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/my-portfolio:latest
