@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
 import { 
     Lock, 
     Search, 
@@ -20,7 +21,25 @@ import {
  * 3. Applies an SVG Filter (feColorMatrix) to force ALL icons into the #00ff99 neon theme.
  */
 
-const NeonIcon = ({ IconComponent, slug, x, y, size = 60, label, color = "#00ff99" }: any) => {
+type NeonIconProps = {
+    IconComponent?: LucideIcon;
+    slug?: string;
+    x: number;
+    y: number;
+    size?: number;
+    label: string;
+    color?: string;
+};
+
+const NeonIcon = ({
+    IconComponent,
+    slug,
+    x,
+    y,
+    size = 60,
+    label,
+    color = "#00ff99"
+}: NeonIconProps) => {
     // If slug is provided, use SimpleIcons CDN, otherwise use Lucide component
     const hostedIconUrl = slug ? `https://cdn.simpleicons.org/${slug}/white` : null;
 
@@ -50,7 +69,9 @@ const NeonIcon = ({ IconComponent, slug, x, y, size = 60, label, color = "#00ff9
                 ) : (
                     <foreignObject x={x + size*0.2} y={y + size*0.2} width={size*0.6} height={size*0.6}>
                         <div className="w-full h-full flex items-center justify-center" style={{ color: color }}>
-                            <IconComponent size={size * 0.6} strokeWidth={1.5} />
+                            {IconComponent && (
+                                <IconComponent size={size * 0.6} strokeWidth={1.5} />
+                            )}
                         </div>
                     </foreignObject>
                 )}
@@ -68,7 +89,17 @@ const NeonIcon = ({ IconComponent, slug, x, y, size = 60, label, color = "#00ff9
     );
 };
 
-const ConnectionLine = ({ d, color = "#00ff99", animated = true }: any) => (
+type ConnectionLineProps = {
+    d: string;
+    color?: string;
+    animated?: boolean;
+};
+
+const ConnectionLine = ({
+    d,
+    color = "#00ff99",
+    animated = true
+}: ConnectionLineProps) => (
     <motion.path 
         d={d} fill="none" stroke={color} strokeWidth="1.5" 
         initial={{ pathLength: 0, opacity: 0 }}
