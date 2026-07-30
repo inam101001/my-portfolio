@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-30T02:59:06.1464731+02:00",
+  "title": "Design System: Magnetic Operations Archive",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Punch-Card Paper",
+        "canonical": "#e9e2d0",
+        "tonalRamp": [
+          "oklch(15% 0.018 86)",
+          "oklch(27% 0.018 86)",
+          "oklch(39% 0.018 86)",
+          "oklch(51% 0.018 86)",
+          "oklch(63% 0.018 86)",
+          "oklch(75% 0.018 86)",
+          "oklch(87% 0.018 86)",
+          "oklch(95% 0.018 86)"
+        ]
+      },
+      "paper-bright": {
+        "role": "neutral",
+        "displayName": "Bright Archive Stock",
+        "canonical": "#f4eddb",
+        "tonalRamp": [
+          "oklch(15% 0.021 87)",
+          "oklch(27% 0.021 87)",
+          "oklch(39% 0.021 87)",
+          "oklch(51% 0.021 87)",
+          "oklch(63% 0.021 87)",
+          "oklch(75% 0.021 87)",
+          "oklch(87% 0.021 87)",
+          "oklch(95% 0.021 87)"
+        ]
+      },
+      "paper-muted": {
+        "role": "neutral",
+        "displayName": "Aged Paper Edge",
+        "canonical": "#b9b2a2",
+        "tonalRamp": [
+          "oklch(15% 0.014 83)",
+          "oklch(27% 0.014 83)",
+          "oklch(39% 0.014 83)",
+          "oklch(51% 0.014 83)",
+          "oklch(63% 0.014 83)",
+          "oklch(75% 0.014 83)",
+          "oklch(87% 0.014 83)",
+          "oklch(95% 0.014 83)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Carbon Ink",
+        "canonical": "#0b0d0c",
+        "tonalRamp": [
+          "oklch(15% 0.004 155)",
+          "oklch(27% 0.004 155)",
+          "oklch(39% 0.004 155)",
+          "oklch(51% 0.004 155)",
+          "oklch(63% 0.004 155)",
+          "oklch(75% 0.004 155)",
+          "oklch(87% 0.004 155)",
+          "oklch(95% 0.004 155)"
+        ]
+      },
+      "ink-raised": {
+        "role": "neutral",
+        "displayName": "Raised Carbon Panel",
+        "canonical": "#171a18",
+        "tonalRamp": [
+          "oklch(15% 0.006 155)",
+          "oklch(27% 0.006 155)",
+          "oklch(39% 0.006 155)",
+          "oklch(51% 0.006 155)",
+          "oklch(63% 0.006 155)",
+          "oklch(75% 0.006 155)",
+          "oklch(87% 0.006 155)",
+          "oklch(95% 0.006 155)"
+        ]
+      },
+      "magnetic-cobalt": {
+        "role": "primary",
+        "displayName": "Magnetic Cobalt",
+        "canonical": "#1d3fe0",
+        "tonalRamp": [
+          "oklch(15% 0.18 268)",
+          "oklch(27% 0.18 268)",
+          "oklch(39% 0.18 268)",
+          "oklch(51% 0.18 268)",
+          "oklch(63% 0.18 268)",
+          "oklch(75% 0.18 268)",
+          "oklch(87% 0.18 268)",
+          "oklch(95% 0.18 268)"
+        ]
+      },
+      "magnetic-cobalt-dark": {
+        "role": "primary",
+        "displayName": "Deep Magnetic Cobalt",
+        "canonical": "#112dad",
+        "tonalRamp": [
+          "oklch(15% 0.15 268)",
+          "oklch(27% 0.15 268)",
+          "oklch(39% 0.15 268)",
+          "oklch(51% 0.15 268)",
+          "oklch(63% 0.15 268)",
+          "oklch(75% 0.15 268)",
+          "oklch(87% 0.15 268)",
+          "oklch(95% 0.15 268)"
+        ]
+      },
+      "registration-orange": {
+        "role": "secondary",
+        "displayName": "Registration Orange",
+        "canonical": "#e66332",
+        "tonalRamp": [
+          "oklch(15% 0.14 41)",
+          "oklch(27% 0.14 41)",
+          "oklch(39% 0.14 41)",
+          "oklch(51% 0.14 41)",
+          "oklch(63% 0.14 41)",
+          "oklch(75% 0.14 41)",
+          "oklch(87% 0.14 41)",
+          "oklch(95% 0.14 41)"
+        ]
+      },
+      "line-dark": {
+        "role": "neutral",
+        "displayName": "Dark Document Line",
+        "canonical": "rgba(11, 13, 12, 0.26)",
+        "tonalRamp": [
+          "oklch(15% 0.004 155 / 0.26)",
+          "oklch(27% 0.004 155 / 0.26)",
+          "oklch(39% 0.004 155 / 0.26)",
+          "oklch(51% 0.004 155 / 0.26)",
+          "oklch(63% 0.004 155 / 0.26)",
+          "oklch(75% 0.004 155 / 0.26)",
+          "oklch(87% 0.004 155 / 0.26)",
+          "oklch(95% 0.004 155 / 0.26)"
+        ]
+      },
+      "line-light": {
+        "role": "neutral",
+        "displayName": "Light Machine Line",
+        "canonical": "rgba(233, 226, 208, 0.24)",
+        "tonalRamp": [
+          "oklch(15% 0.018 86 / 0.24)",
+          "oklch(27% 0.018 86 / 0.24)",
+          "oklch(39% 0.018 86 / 0.24)",
+          "oklch(51% 0.018 86 / 0.24)",
+          "oklch(63% 0.018 86 / 0.24)",
+          "oklch(75% 0.018 86 / 0.24)",
+          "oklch(87% 0.018 86 / 0.24)",
+          "oklch(95% 0.018 86 / 0.24)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Personnel Identity",
+        "purpose": "The first-viewport identity and only the largest, shortest statements."
+      },
+      "headline": {
+        "displayName": "Archive Headline",
+        "purpose": "Section-level narrative pivots."
+      },
+      "title": {
+        "displayName": "Machine Record Title",
+        "purpose": "Projects, system records, and lifecycle phases."
+      },
+      "body": {
+        "displayName": "Editorial Body",
+        "purpose": "Explanatory copy and evidence summaries."
+      },
+      "operations-label": {
+        "displayName": "Operations Label",
+        "purpose": "Commands, metadata, status, dates, serials, and navigation."
+      }
+    },
+    "shadows": [
+      {
+        "name": "navigation-lift",
+        "value": "0 14px 36px rgba(11, 13, 12, 0.18)",
+        "purpose": "Separates fixed desktop navigation from moving document and machine fields."
+      },
+      {
+        "name": "mobile-menu-lift",
+        "value": "0 20px 42px rgba(0, 0, 0, 0.34)",
+        "purpose": "Raises the opened mobile machine panel above the page."
+      },
+      {
+        "name": "primary-action-signal",
+        "value": "0 10px 24px rgba(29, 63, 224, 0.2)",
+        "purpose": "Appears only when the hero primary action becomes cobalt."
+      },
+      {
+        "name": "hardware-depth",
+        "value": "0 10px 22px rgba(0, 0, 0, 0.42)",
+        "purpose": "Grounds tape guides and other literal mechanical parts."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Fast control response, accordion expansion, and image settling."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Deliberate mechanical transitions when a symmetric curve is needed."
+      },
+      {
+        "name": "smooth",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Framer Motion scene and phase transitions."
+      },
+      {
+        "name": "duration-fast",
+        "value": "180ms",
+        "purpose": "State transitions and lifecycle phase copy."
+      },
+      {
+        "name": "duration-normal",
+        "value": "340ms",
+        "purpose": "Standard authored movement."
+      },
+      {
+        "name": "duration-slow",
+        "value": "620ms",
+        "purpose": "First-view reveal and larger narrative transitions."
+      },
+      {
+        "name": "operations-roll",
+        "value": "28s linear infinite",
+        "purpose": "Continuous workflow marquee; disabled under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "machine-compact",
+        "value": "1100px"
+      },
+      {
+        "name": "archive-mobile",
+        "value": "820px"
+      },
+      {
+        "name": "archive-narrow",
+        "value": "560px"
+      },
+      {
+        "name": "minimum-supported",
+        "value": "320px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Archive Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The decisive dark action used on the punch-card hero.",
+      "html": "<button class=\"ds-btn-primary\">INSPECT THE WORK <span aria-hidden=\"true\">↘</span></button>",
+      "css": ".ds-btn-primary { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 12px; padding: 0 19px; border: 1px solid var(--ink, #0b0d0c); border-radius: 0; background: var(--ink, #0b0d0c); color: var(--paper-bright, #f4eddb); font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; transition: background-color 180ms ease, color 180ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 180ms ease; } .ds-btn-primary:hover { background: var(--blue, #1d3fe0); box-shadow: 0 10px 24px rgba(29, 63, 224, 0.2); } .ds-btn-primary:focus-visible { outline: 3px solid var(--orange, #e66332); outline-offset: 4px; } .ds-btn-primary:active { transform: scale(0.97); }"
+    },
+    {
+      "name": "Secondary Archive Action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A transparent paper control for the supporting action.",
+      "html": "<button class=\"ds-btn-secondary\">START A CONVERSATION <span aria-hidden=\"true\">↗</span></button>",
+      "css": ".ds-btn-secondary { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 12px; padding: 0 19px; border: 1px solid var(--ink, #0b0d0c); border-radius: 0; background: transparent; color: var(--ink, #0b0d0c); font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; transition: background-color 180ms ease, color 180ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-secondary:hover { background: var(--orange, #e66332); } .ds-btn-secondary:focus-visible { outline: 3px solid var(--orange, #e66332); outline-offset: 4px; } .ds-btn-secondary:active { transform: scale(0.97); }"
+    },
+    {
+      "name": "Archive Navigation",
+      "kind": "nav",
+      "refersTo": "navigation-link",
+      "description": "A gapless strip of bright document tabs with a cobalt CV control.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Portfolio sections\"><a href=\"#work\">WORK</a><a href=\"#process\">PROCESS</a><a class=\"ds-nav-cv\" href=\"#contact\">DOWNLOAD CV ↓</a></nav>",
+      "css": ".ds-nav { display: inline-flex; border: 1px solid rgba(11, 13, 12, 0.26); background: var(--paper-bright, #f4eddb); box-shadow: 0 14px 36px rgba(11, 13, 12, 0.18); } .ds-nav a { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 0 18px; border-right: 1px solid rgba(11, 13, 12, 0.26); color: var(--ink, #0b0d0c); font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; transition: background-color 160ms ease, color 160ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-nav a:last-child { border-right: 0; } .ds-nav a:hover { background: var(--ink, #0b0d0c); color: var(--paper, #e9e2d0); } .ds-nav a:focus-visible { outline: 3px solid var(--orange, #e66332); outline-offset: 4px; } .ds-nav a:active { transform: scale(0.97); } .ds-nav .ds-nav-cv { background: var(--blue, #1d3fe0); color: var(--paper-bright, #f4eddb); } .ds-nav .ds-nav-cv:hover { background: var(--orange, #e66332); color: var(--ink, #0b0d0c); }"
+    },
+    {
+      "name": "Operations Tag",
+      "kind": "chip",
+      "description": "An unboxed evidence tag prefixed by the orange archive slash.",
+      "html": "<span class=\"ds-operations-tag\">Kubernetes</span>",
+      "css": ".ds-operations-tag { display: inline-flex; align-items: center; color: var(--ink, #0b0d0c); font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.68rem; } .ds-operations-tag::before { content: \"/\"; margin-right: 6px; color: var(--orange, #e66332); } .ds-operations-tag:focus-visible { outline: 3px solid var(--orange, #e66332); outline-offset: 4px; }"
+    },
+    {
+      "name": "Delivery Ledger Record",
+      "kind": "card",
+      "refersTo": "project-record",
+      "description": "The dominant cobalt system record in the gapless infrastructure ledger.",
+      "html": "<article class=\"ds-ledger-record\"><header><span>DELIVERY CONTROL</span><span>CI / CD / GITOPS</span></header><div><h3>One artifact. A visible route to production.</h3><p>Build, test, scan, package, and release through inspectable automation.</p></div><footer><span>COMMIT</span><span>BUILD</span><span>SCAN</span><span>DEPLOY</span></footer></article>",
+      "css": ".ds-ledger-record { display: flex; min-height: 430px; flex-direction: column; justify-content: space-between; padding: 42px; border-right: 1px solid rgba(11, 13, 12, 0.26); border-bottom: 1px solid rgba(11, 13, 12, 0.26); border-radius: 0; background: var(--blue, #1d3fe0); color: var(--paper-bright, #f4eddb); } .ds-ledger-record header, .ds-ledger-record footer { display: flex; justify-content: space-between; gap: 18px; color: rgba(244, 237, 219, 0.68); font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.62rem; letter-spacing: 0.08em; } .ds-ledger-record footer { padding-top: 18px; border-top: 1px solid rgba(244, 237, 219, 0.42); } .ds-ledger-record h3 { max-width: 14ch; margin: 30px 0 14px; font-family: \"Cabinet Grotesk\", \"Arial Narrow\", Arial, sans-serif; font-size: clamp(1.8rem, 3vw, 3.4rem); font-weight: 650; line-height: 0.96; letter-spacing: -0.025em; } .ds-ledger-record p { max-width: 55ch; margin: 0; font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.73rem; line-height: 1.62; opacity: 0.7; } .ds-ledger-record:focus-within { outline: 3px solid var(--orange, #e66332); outline-offset: -3px; }"
+    },
+    {
+      "name": "Project Machine Record",
+      "kind": "card",
+      "refersTo": "project-record",
+      "description": "A paper project record with machine metadata, system title, evidence, and proof link.",
+      "html": "<article class=\"ds-project-record\"><header><span>MOA–PRJ–001</span><span>TRACEABLE DELIVERY</span></header><div class=\"ds-project-signal\" aria-hidden=\"true\"><i></i><i></i><i></i></div><h3>Microservices Banking Platform</h3><p>An event-driven platform with Kubernetes, GitOps delivery, security scanning, and observability.</p><a href=\"#proof\">REPOSITORY ↗</a></article>",
+      "css": ".ds-project-record { min-height: 540px; padding: 24px; border: 1px solid rgba(11, 13, 12, 0.26); border-radius: 0; background: var(--paper, #e9e2d0); color: var(--ink, #0b0d0c); } .ds-project-record header { display: flex; min-height: 44px; justify-content: space-between; gap: 16px; font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.61rem; letter-spacing: 0.05em; } .ds-project-signal { display: flex; min-height: 170px; align-items: center; justify-content: space-around; border-bottom: 1px solid rgba(11, 13, 12, 0.26); } .ds-project-signal i { width: 34px; height: 34px; border: 3px solid var(--blue, #1d3fe0); border-radius: 50%; } .ds-project-signal i:last-child { width: 9px; height: 9px; border: 0; background: var(--orange, #e66332); } .ds-project-record h3 { max-width: 12ch; margin: 24px 0 12px; font-family: \"Cabinet Grotesk\", \"Arial Narrow\", Arial, sans-serif; font-size: clamp(2rem, 3vw, 3.7rem); font-weight: 650; line-height: 0.93; letter-spacing: -0.025em; } .ds-project-record p { max-width: 58ch; margin: 0; font-size: 0.87rem; line-height: 1.62; opacity: 0.7; } .ds-project-record a { display: inline-flex; min-height: 42px; align-items: center; margin-top: 24px; padding: 0 13px; border: 1px solid currentColor; color: inherit; font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.62rem; font-weight: 700; text-decoration: none; } .ds-project-record a:hover { background: var(--ink, #0b0d0c); color: var(--paper, #e9e2d0); } .ds-project-record a:focus-visible { outline: 3px solid var(--orange, #e66332); outline-offset: 4px; } .ds-project-record a:active { transform: scale(0.97); }"
+    },
+    {
+      "name": "Lifecycle Rail Step",
+      "kind": "button",
+      "description": "A directly selectable process phase with an orange active registration bar.",
+      "html": "<button class=\"ds-phase-step ds-is-active\" type=\"button\" aria-current=\"step\"><span>DEPLOY</span></button>",
+      "css": ".ds-phase-step { position: relative; min-width: 112px; min-height: 50px; padding: 14px 6px 0; border: 0; border-top: 1px solid rgba(233, 226, 208, 0.24); border-radius: 0; background: var(--ink, #0b0d0c); color: rgba(233, 226, 208, 0.42); font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.68rem; text-align: left; transition: color 160ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-phase-step::before { content: \"\"; position: absolute; top: -1px; right: 6px; left: 6px; height: 3px; background: var(--orange, #e66332); opacity: 0; transform: scaleX(0.14); transform-origin: left; transition: opacity 160ms ease, transform 220ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-phase-step:hover, .ds-phase-step:focus-visible, .ds-phase-step.ds-is-active { color: var(--paper-bright, #f4eddb); } .ds-phase-step:focus-visible { outline: 3px solid var(--orange, #e66332); outline-offset: 4px; } .ds-phase-step.ds-is-active::before { opacity: 1; transform: scaleX(1); } .ds-phase-step:active { transform: scale(0.97); }"
+    },
+    {
+      "name": "Contact Index Row",
+      "kind": "custom",
+      "description": "A ruled cobalt archive row pairing a monospace category with a clear contact value.",
+      "html": "<div class=\"ds-contact-row\"><span>EMAIL</span><a href=\"mailto:inam101001@gmail.com\">inam101001@gmail.com</a></div>",
+      "css": ".ds-contact-row { display: grid; gap: 8px; padding: 22px 0; border-top: 1px solid rgba(244, 237, 219, 0.4); border-bottom: 1px solid rgba(244, 237, 219, 0.28); background: var(--blue, #1d3fe0); } .ds-contact-row span { color: rgba(244, 237, 219, 0.62); font-family: \"SFMono-Regular\", \"Cascadia Code\", Consolas, monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; } .ds-contact-row a { color: var(--paper-bright, #f4eddb); font-family: \"Cabinet Grotesk\", \"Arial Narrow\", Arial, sans-serif; font-size: 0.92rem; text-decoration: none; } .ds-contact-row a:hover { color: var(--orange, #e66332); } .ds-contact-row a:focus-visible { outline: 3px solid var(--orange, #e66332); outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Magnetic Operations Archive",
+    "overview": "The portfolio behaves like a late-1960s computer operations room opened for inspection. Punch-card paper, carbon machine housings, magnetic tape, registration marks, and machine-record typography make invisible infrastructure feel tangible. The world is cinematic because it has physical logic, not because it adds decorative spectacle.\n\nInformation density is editorial at the headline level and operational in the details. Large Cabinet Grotesk statements establish a clear reading order; compact monospace metadata records commands, systems, dates, and status. Motion explains handoffs, state, and lifecycle, while every important fact remains readable without it.\n\nThe system explicitly rejects the generic neon terminal dashboard. It should feel authored, archival, and production-minded: warm paper against near-black machinery, one decisive cobalt signal, and rare orange registration marks.",
+    "keyCharacteristics": [
+      "Tactile archive paper paired with carbon-black machine panels.",
+      "Cobalt magnetic tape as the primary system and action signal.",
+      "Orange used sparingly for registration, state, and focus.",
+      "Sharp rectangular mechanics balanced by circular reels and punch holes.",
+      "Oversized editorial statements supported by compact operations metadata.",
+      "Scroll motion that reveals sequence and cause-and-effect."
+    ],
+    "rules": [
+      {
+        "name": "The Signal Rarity Rule",
+        "body": "Orange marks state or registration; it is not a general fill color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper-or-Machine Rule",
+        "body": "Every major surface should clearly read as either document stock or machine housing. Avoid ambiguous gray dashboard panels.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Voice Rule",
+        "body": "Cabinet Grotesk makes the claim; monospace records the evidence.",
+        "section": "typography"
+      },
+      {
+        "name": "The Compressed Headline Rule",
+        "body": "Major headings use tight leading and negative tracking. Do not loosen them into generic marketing typography.",
+        "section": "typography"
+      },
+      {
+        "name": "The Gapless Record Rule",
+        "body": "Related data cards share borders instead of floating as isolated rounded tiles.",
+        "section": "layout"
+      },
+      {
+        "name": "The Asymmetry Rule",
+        "body": "Pair one dominant narrative field with a smaller operational field; avoid evenly weighted dashboard grids.",
+        "section": "layout"
+      },
+      {
+        "name": "The Structural Depth Rule",
+        "body": "Use rules, material shifts, and overlap before reaching for a shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Mechanics Rule",
+        "body": "Rectangles organize information; circles describe machinery.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do make infrastructure visible through sequences, diagrams, system records, and traceable evidence.",
+      "Do use paper grain, shared rules, and physical overlap to create material depth.",
+      "Do reserve cobalt for operational pathways and decisive action.",
+      "Do keep orange rare and semantic: focus, registration, or active state.",
+      "Do make motion reversible, purposeful, and fully legible under reduced-motion preferences.",
+      "Do preserve strong typography, keyboard focus, touch targets, and a 320px minimum viewport."
+    ],
+    "donts": [
+      "Don't regress into a generic neon terminal, glassmorphic dashboard, or glowing cyberpunk interface.",
+      "Don't scatter rounded cards, pill controls, or soft SaaS containers across the archive.",
+      "Don't use orange as a broad background or decorative wash.",
+      "Don't add motion that merely spins or floats without explaining a system state.",
+      "Don't put long prose in monospace or use operations labels as decorative filler.",
+      "Don't invent project claims, metrics, employers, qualifications, or outcomes to fill visual space."
+    ]
+  }
+}

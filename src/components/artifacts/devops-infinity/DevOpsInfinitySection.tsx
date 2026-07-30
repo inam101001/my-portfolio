@@ -1,12 +1,20 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useCallback, useRef, useState, type CSSProperties } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "framer-motion";
 import { DevOpsInfinityScene } from "./DevOpsInfinityScene";
 import { devOpsLifecycle } from "./devopsLifecycle";
+import { motionTokens } from "../../../motion";
 
 export function DevOpsInfinitySection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const progressRef = useRef(0);
   const [activePhase, setActivePhase] = useState(0);
+  const reducedMotion = useReducedMotion();
   const phase = devOpsLifecycle[activePhase];
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -16,61 +24,6 @@ export function DevOpsInfinitySection() {
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
     progressRef.current = progress;
   });
-
-  useEffect(() => {
-    const handleWheel = (event: WheelEvent) => {
-      const section = sectionRef.current;
-      if (!section || event.defaultPrevented || event.ctrlKey || !event.deltaY) {
-        return;
-      }
-
-      const sectionTop =
-        window.scrollY + section.getBoundingClientRect().top;
-      const sectionEnd =
-        sectionTop + section.offsetHeight - window.innerHeight;
-      const currentScroll = window.scrollY;
-      const direction = Math.sign(event.deltaY);
-      const normalizedDelta =
-        event.deltaMode === WheelEvent.DOM_DELTA_LINE
-          ? event.deltaY * 16
-          : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
-            ? event.deltaY * window.innerHeight
-            : event.deltaY;
-
-      if (
-        direction > 0 &&
-        currentScroll < sectionTop &&
-        currentScroll + normalizedDelta >= sectionTop
-      ) {
-        event.preventDefault();
-        window.scrollTo({
-          top: sectionTop,
-          left: window.scrollX,
-          behavior: "instant",
-        });
-        return;
-      }
-
-      const isPinned =
-        currentScroll >= sectionTop - 1 && currentScroll <= sectionEnd + 1;
-      const isLeaving =
-        (direction < 0 && currentScroll <= sectionTop + 1) ||
-        (direction > 0 && currentScroll >= sectionEnd - 1);
-
-      if (!isPinned || isLeaving) return;
-
-      event.preventDefault();
-      const maxDelta = window.innerHeight * 0.34;
-      window.scrollBy({
-        top: Math.max(-maxDelta, Math.min(maxDelta, normalizedDelta)),
-        left: 0,
-        behavior: "instant",
-      });
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, []);
 
   const handlePhaseChange = useCallback((index: number) => {
     setActivePhase((current) => (current === index ? current : index));
@@ -106,26 +59,107 @@ export function DevOpsInfinitySection() {
         />
 
         <div className="devops-infinity-heading">
-          <span>Continuous delivery system</span>
+          <span>02 / Continuous delivery</span>
           <h2>One lifecycle. No broken handoffs.</h2>
         </div>
 
-        <article
-          className={`devops-phase-detail is-${phase.panelSide}`}
-          key={phase.id}
-          aria-live="polite"
-        >
-          <div className="devops-phase-command">
-            <span aria-hidden="true">$</span> {phase.command}
-          </div>
-          <h3>{phase.label}</h3>
-          <p>{phase.summary}</p>
-          <ul aria-label={`${phase.label} tools`}>
-            {phase.tools.map((tool) => (
-              <li key={tool}>{tool}</li>
-            ))}
-          </ul>
-        </article>
+        <AnimatePresence mode="sync" initial={false}>
+          <motion.article
+            className={`devops-phase-detail is-${phase.panelSide}`}
+            key={phase.id}
+            aria-live="polite"
+            style={{ "--phase-y": phase.panelY } as CSSProperties}
+            initial={{
+              opacity: 0,
+              x: reducedMotion
+                ? 0
+                : phase.panelSide === "right"
+                  ? motionTokens.distance.panel
+                  : -motionTokens.distance.panel,
+              y: reducedMotion ? 0 : motionTokens.distance.text,
+            }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            exit={{
+              opacity: 0,
+              x: reducedMotion
+                ? 0
+                : phase.panelSide === "right"
+                  ? -motionTokens.distance.text
+                  : motionTokens.distance.text,
+              y: reducedMotion ? 0 : -8,
+            }}
+            transition={{
+              duration: reducedMotion
+                ? motionTokens.duration.fast
+                : motionTokens.duration.normal,
+              ease: motionTokens.easing.smooth,
+            }}
+          >
+            <motion.div
+              className="devops-phase-command"
+              initial={{ opacity: 0, y: reducedMotion ? 0 : 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: motionTokens.duration.fast }}
+            >
+              <span aria-hidden="true">$</span> {phase.command}
+            </motion.div>
+            <motion.h3
+              initial={{ opacity: 0, y: reducedMotion ? 0 : 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: motionTokens.duration.normal,
+                delay: reducedMotion ? 0 : 0.04,
+                ease: motionTokens.easing.smooth,
+              }}
+            >
+              {phase.label}
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: motionTokens.duration.normal,
+                delay: reducedMotion ? 0 : 0.08,
+                ease: motionTokens.easing.smooth,
+              }}
+            >
+              {phase.summary}
+            </motion.p>
+            <motion.ul
+              aria-label={`${phase.label} tools`}
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: reducedMotion ? 0 : 0.045,
+                    delayChildren: reducedMotion ? 0 : 0.12,
+                  },
+                },
+              }}
+            >
+              {phase.tools.map((tool) => (
+                <motion.li
+                  key={tool}
+                  variants={{
+                    hidden: { opacity: 0, y: reducedMotion ? 0 : 7 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: motionTokens.duration.fast,
+                        ease: motionTokens.easing.smooth,
+                      },
+                    },
+                  }}
+                >
+                  {tool}
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.article>
+        </AnimatePresence>
 
         <nav className="devops-phase-nav" aria-label="DevOps lifecycle phases">
           {devOpsLifecycle.map((item, index) => (

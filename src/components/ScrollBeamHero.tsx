@@ -284,13 +284,6 @@ export function ScrollBeamHero() {
           onPointerMove={triggerScramble}
           style={{ opacity: introOpacity }}
         >
-          <p className="hero-kicker">
-            <ScrambleText
-              text="DevOps Engineer"
-              duration={900}
-              triggerKey={scrambleKey}
-            />
-          </p>
           <h1
             className="scramble-hover-zone"
             onFocus={triggerScramble}
@@ -307,7 +300,7 @@ export function ScrollBeamHero() {
             />
             <span className="hero-tagline">
               <ScrambleText
-                text="builds systems that stay alive."
+                text="DevOps engineer building systems that stay alive."
                 duration={1050}
                 triggerKey={scrambleKey}
               />
@@ -315,8 +308,12 @@ export function ScrollBeamHero() {
           </h1>
           <p>
             Cloud infrastructure, CI/CD automation, Kubernetes, observability,
-            and production-minded platform engineering.
+            and AI-assisted operations built for production.
           </p>
+          <div className="hero-actions">
+            <a href="#work">Inspect systems</a>
+            <a href="#contact">Open a channel</a>
+          </div>
         </div>
 
         <div className="scroll-instruction" style={{ opacity: scrollPromptOpacity }}>

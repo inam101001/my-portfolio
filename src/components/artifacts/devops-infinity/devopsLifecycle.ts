@@ -5,79 +5,88 @@ export type DevOpsPhase = {
   summary: string;
   tools: string[];
   panelSide: "left" | "right";
+  panelY: string;
 };
 
 export const devOpsLifecycle: DevOpsPhase[] = [
   {
     id: "plan",
     label: "Plan",
-    command: "define --delivery-path",
+    command: "map --infra-and-recovery",
     summary:
-      "Turn requirements into an infrastructure plan with clear environments, dependencies, and recovery paths.",
+      "I turn product goals into a delivery map: environments, cloud boundaries, dependencies, and recovery paths before resources are created.",
     tools: ["AWS", "Google Cloud", "Terraform"],
     panelSide: "right",
+    panelY: "28%",
   },
   {
     id: "code",
     label: "Code",
-    command: "author --automation",
+    command: "version --automation",
     summary:
-      "Build repeatable infrastructure and operational tooling that can be reviewed, versioned, and reused.",
+      "I keep infrastructure and operational logic reviewable, versioned, and reusable so a production change never depends on memory.",
     tools: ["Git", "Bash", "TypeScript"],
-    panelSide: "right",
+    panelSide: "left",
+    panelY: "42%",
   },
   {
     id: "build",
     label: "Build",
-    command: "package --repeatable",
+    command: "package --immutable",
     summary:
-      "Convert source and configuration into consistent container images and automated pipeline artifacts.",
+      "I package applications into consistent Docker images and make the pipeline produce the same artifact in every environment.",
     tools: ["Docker", "Jenkins", "GitHub Actions"],
     panelSide: "right",
+    panelY: "57%",
   },
   {
     id: "test",
     label: "Test",
-    command: "validate --before-release",
+    command: "verify --before-prod",
     summary:
-      "Check infrastructure changes, container behavior, and pipeline health before anything reaches production.",
+      "I validate Terraform changes, container behavior, security checks, and pipeline health before a release can reach production.",
     tools: ["Terraform", "Docker", "GitHub Actions"],
-    panelSide: "right",
+    panelSide: "left",
+    panelY: "64%",
   },
   {
     id: "release",
     label: "Release",
-    command: "promote --controlled",
+    command: "promote --traceable",
     summary:
-      "Promote known artifacts through a controlled delivery path with traceable automation and rollback options.",
+      "I promote known artifacts through controlled automation, preserving a traceable release path and a practical rollback route.",
     tools: ["Jenkins", "GitHub Actions", "ArgoCD"],
-    panelSide: "left",
+    panelSide: "right",
+    panelY: "34%",
   },
   {
     id: "deploy",
     label: "Deploy",
-    command: "apply --production",
+    command: "rollout --orchestrated",
     summary:
-      "Provision and deploy containerized workloads across managed Kubernetes environments.",
+      "I provision cloud infrastructure and roll containerized workloads into Kubernetes with repeatable, declarative delivery.",
     tools: ["Kubernetes", "EKS", "GKE", "Ansible"],
     panelSide: "left",
+    panelY: "48%",
   },
   {
     id: "operate",
     label: "Operate",
-    command: "maintain --resilient",
+    command: "stabilize --production",
     summary:
-      "Keep services available through orchestration, operational automation, and production-focused maintenance.",
+      "I keep clusters and cloud services dependable through orchestration, automation, capacity awareness, and production-focused maintenance.",
     tools: ["Kubernetes", "AWS", "Google Cloud", "Bash"],
-    panelSide: "left",
+    panelSide: "right",
+    panelY: "61%",
   },
   {
     id: "monitor",
     label: "Monitor",
-    command: "observe --continuous",
+    command: "observe --close-the-loop",
     summary:
-      "Use metrics, dashboards, and cloud telemetry to understand system health and catch failures early.",
+      "I make system health visible with metrics, dashboards, and cloud telemetry, then feed what I learn back into the next plan.",
     tools: ["Prometheus", "Grafana", "CloudWatch"],
     panelSide: "left",
+    panelY: "31%",
   },
 ];

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { devOpsLifecycle } from "./devopsLifecycle";
+import { motionTokens } from "../../../motion";
 
 const SAMPLE_COUNT = 320;
 const TAU = Math.PI * 2;
@@ -36,7 +37,7 @@ function createTextSprite(label: string, rotation: number) {
     context.font = "600 58px Consolas, monospace";
     context.textAlign = "center";
     context.textBaseline = "middle";
-    context.fillStyle = "#ecfff0";
+    context.fillStyle = "#e9e2d0";
     context.fillText(label.toUpperCase(), canvas.width / 2, canvas.height / 2);
   }
 
@@ -46,7 +47,7 @@ function createTextSprite(label: string, rotation: number) {
 
   const material = new THREE.SpriteMaterial({
     map: texture,
-    color: 0x789989,
+    color: 0x8f897d,
     transparent: true,
     opacity: 0.42,
     depthWrite: false,
@@ -163,14 +164,15 @@ export function DevOpsInfinityScene({
       antialias: true,
       powerPreference: "high-performance",
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.55));
+    const maxPixelRatio = canvas.clientWidth < 720 ? 1.2 : 1.4;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
     renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.15;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x020805, 0.052);
+    scene.fog = new THREE.FogExp2(0x0b0d0c, 0.052);
 
     const camera = new THREE.PerspectiveCamera(
       36,
@@ -183,10 +185,10 @@ export function DevOpsInfinityScene({
     const root = new THREE.Group();
     scene.add(root);
 
-    const ambient = new THREE.AmbientLight(0x72ffc0, 0.5);
-    const keyLight = new THREE.PointLight(0x00ff99, 24, 18, 1.8);
+    const ambient = new THREE.AmbientLight(0x6579ff, 0.46);
+    const keyLight = new THREE.PointLight(0x1d3fe0, 24, 18, 1.8);
     keyLight.position.set(-2.5, 3.5, 5);
-    const rimLight = new THREE.PointLight(0x88a6ff, 18, 20, 2);
+    const rimLight = new THREE.PointLight(0xe66332, 18, 20, 2);
     rimLight.position.set(4, -2, 3);
     scene.add(ambient, keyLight, rimLight);
 
@@ -200,13 +202,13 @@ export function DevOpsInfinityScene({
       const midpoint = (phaseStart + phaseEnd) / 2;
       const point = infinityCurve.getPointAt(midpoint);
       const tangent = infinityCurve.getTangentAt(midpoint);
-      const segmentColor = new THREE.Color(0x00ff99).lerp(
-        new THREE.Color(0x6f8cff),
-        index / (devOpsLifecycle.length - 1) * 0.42,
+      const segmentColor = new THREE.Color(0x1d3fe0).lerp(
+        new THREE.Color(0xe66332),
+        (index / (devOpsLifecycle.length - 1)) * 0.34,
       );
       const segmentMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0x0b2c22,
-        emissive: 0x001d13,
+        color: 0x1b1e1c,
+        emissive: 0x080a09,
         emissiveIntensity: 0.18,
         metalness: 0.4,
         roughness: 0.21,
@@ -247,8 +249,8 @@ export function DevOpsInfinityScene({
     });
 
     const particleGeometry = new THREE.BufferGeometry();
-    const particlePositions = new Float32Array(240 * 3);
-    for (let index = 0; index < 240; index += 1) {
+    const particlePositions = new Float32Array(150 * 3);
+    for (let index = 0; index < 150; index += 1) {
       particlePositions[index * 3] = (Math.random() - 0.5) * 15;
       particlePositions[index * 3 + 1] = (Math.random() - 0.5) * 8;
       particlePositions[index * 3 + 2] = (Math.random() - 0.5) * 7 - 2;
@@ -260,7 +262,7 @@ export function DevOpsInfinityScene({
     const particles = new THREE.Points(
       particleGeometry,
       new THREE.PointsMaterial({
-        color: 0x50ffad,
+        color: 0xe9e2d0,
         size: 0.025,
         transparent: true,
         opacity: 0.34,
@@ -273,19 +275,21 @@ export function DevOpsInfinityScene({
     let frameId = 0;
     let isVisible = true;
     let elapsedTime = 0;
+    let visualProgress = clamp(progressRef.current);
     let previousFrameTime = performance.now();
     const target = new THREE.Vector3();
     const lookTarget = new THREE.Vector3();
     const cameraTarget = new THREE.Vector3();
-    const inactiveSegmentColor = new THREE.Color(0x0b2c22);
-    const inactiveSegmentEmissive = new THREE.Color(0x001d13);
-    const activeLabelColor = new THREE.Color(0xffffff);
-    const inactiveLabelColor = new THREE.Color(0x789989);
+    const inactiveSegmentColor = new THREE.Color(0x1b1e1c);
+    const inactiveSegmentEmissive = new THREE.Color(0x080a09);
+    const activeLabelColor = new THREE.Color(0xe9e2d0);
+    const inactiveLabelColor = new THREE.Color(0x8f897d);
 
     const resize = () => {
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.55));
+      const pixelRatio = width < 720 ? 1.2 : 1.4;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, pixelRatio));
       renderer.setSize(width, height, false);
       camera.aspect = width / Math.max(height, 1);
       camera.updateProjectionMatrix();
@@ -303,7 +307,19 @@ export function DevOpsInfinityScene({
       previousFrameTime = frameTime;
       elapsedTime += deltaTime;
 
-      const progress = clamp(progressRef.current);
+      const targetProgress = clamp(progressRef.current);
+      visualProgress = reducedMotion
+        ? targetProgress
+        : THREE.MathUtils.damp(
+            visualProgress,
+            targetProgress,
+            motionTokens.scrollDamping,
+            deltaTime,
+          );
+      const progress =
+        Math.abs(targetProgress - visualProgress) < 0.0001
+          ? targetProgress
+          : visualProgress;
       const lifecycleProgress = progress;
       const scaledPhase =
         lifecycleProgress * (devOpsLifecycle.length - 1) + 0.0001;
@@ -316,7 +332,7 @@ export function DevOpsInfinityScene({
         currentIndex + 1,
       );
       const localProgress = scaledPhase - currentIndex;
-      const transition = smoothstep(0.52, 0.94, localProgress);
+      const transition = smoothstep(0.16, 0.84, localProgress);
       const displayedIndex = transition > 0.5 ? nextIndex : currentIndex;
       const intro = smoothstep(0, 0.08, progress);
 
