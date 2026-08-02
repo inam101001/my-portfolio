@@ -109,7 +109,7 @@ jobs:
         with:
           service: my-portfolio
           region: ${{ secrets.GCP_REGION }}
-          image: ${{ needs.build-and-push.outputs.image }}
+          image: ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/portfolio/my-portfolio:${{ github.sha }}
           flags: '--allow-unauthenticated'
 
       - name: Verify Health
