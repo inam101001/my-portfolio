@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { ContactSection } from "./components/ContactSection";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { HeroSection } from "./components/HeroSection";
@@ -19,6 +20,7 @@ function App() {
         <SystemsSection />
         <ContactSection />
       </main>
+      <Analytics />
     </>
   );
 }
