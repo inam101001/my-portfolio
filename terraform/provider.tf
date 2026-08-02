@@ -1,22 +1,36 @@
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.5"
 
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
       version = "~> 5.0"
     }
   }
+
+  # Remote state stored in GCS — run bootstrap/init_backend.sh once before terraform init
+  backend "gcs" {
+    bucket = "inam-portfolio-terraform-state"  # Created manually before first terraform init (see docs/gcp-setup-guide.md)
+    prefix = "terraform/state"
+  }
 }
 
-provider "aws" {
-  region = var.aws_region
+provider "google" {
+  project = var.gcp_project_id
+  region  = var.gcp_region
 
-  default_tags {
-    tags = {
-      Project     = "Portfolio"
-      Environment = "Production"
-      ManagedBy   = "Terraform"
-    }
+  default_labels = {
+    project     = "portfolio"
+    environment = "production"
+    managed-by  = "terraform"
   }
+}
+
+provider "google-beta" {
+  project = var.gcp_project_id
+  region  = var.gcp_region
 }

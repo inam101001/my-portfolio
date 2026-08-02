@@ -1,52 +1,38 @@
-output "ec2_public_ip" {
-  description = "Public IP of EC2 instance"
-  value       = aws_eip.portfolio_eip.public_ip
+output "cloud_run_url" {
+  description = "Direct Cloud Run service URL (*.run.app)"
+  value       = google_cloud_run_v2_service.portfolio.uri
 }
 
-output "ec2_instance_id" {
-  description = "EC2 Instance ID"
-  value       = aws_instance.portfolio.id
+output "cloud_dns_nameservers" {
+  description = <<-EOT
+    Google Cloud DNS nameservers for inamulhaq.site.
+    Update your domain registrar (Namecheap) to use these 4 nameservers.
+    This is the ONLY manual step after terraform apply.
+  EOT
+  value       = google_dns_managed_zone.portfolio.name_servers
 }
 
-output "route53_nameservers" {
-  description = "Route53 nameservers (update these in Namecheap)"
-  value       = aws_route53_zone.main.name_servers
+output "artifact_registry_repo" {
+  description = "Full Artifact Registry repository path (use this in CI/CD image tags)"
+  value       = "${var.gcp_region}-docker.pkg.dev/${var.gcp_project_id}/${google_artifact_registry_repository.portfolio.repository_id}"
 }
 
-output "domain_name" {
-  description = "Domain name"
-  value       = var.domain_name
+output "wif_provider" {
+  description = "Workload Identity Federation provider resource name — set as GCP_WIF_PROVIDER GitHub secret"
+  value       = google_iam_workload_identity_pool_provider.github.name
 }
 
-output "acm_certificate_arn" {
-  description = "ACM Certificate ARN"
-  value       = aws_acm_certificate.portfolio_cert.arn
+output "github_actions_service_account" {
+  description = "Service account email for GitHub Actions — set as GCP_SERVICE_ACCOUNT GitHub secret"
+  value       = google_service_account.github_actions.email
 }
 
-output "cloudfront_domain" {
-  description = "CloudFront distribution domain name"
-  value       = aws_cloudfront_distribution.portfolio.domain_name
+output "root_domain_mapping_status" {
+  description = "Status of the custom domain mapping for the root domain"
+  value       = google_cloud_run_domain_mapping.root.status[0].conditions[0].message
 }
 
-output "cloudfront_distribution_id" {
-  description = "CloudFront distribution ID (use this to invalidate cache)"
-  value       = aws_cloudfront_distribution.portfolio.id
-}
-
-output "security_group_id" {
-  description = "Security Group ID"
-  value       = aws_security_group.portfolio_sg.id
-}
-
-output "ssh_private_key_path" {
-  description = "Path to SSH private key for Ansible"
-  value       = local_file.private_key.filename
-}
-
-output "ansible_inventory" {
-  description = "Ansible inventory content"
-  value = templatefile("${path.module}/ansible_inventory.tpl", {
-    ec2_ip       = aws_eip.portfolio_eip.public_ip
-    ssh_key_path = local_file.private_key.filename
-  })
+output "www_domain_mapping_status" {
+  description = "Status of the custom domain mapping for the www subdomain"
+  value       = google_cloud_run_domain_mapping.www.status[0].conditions[0].message
 }

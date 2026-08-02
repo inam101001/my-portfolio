@@ -1,158 +1,26 @@
 version: '3.8'
 
+# Local development only.
+# Production is deployed to GCP Cloud Run — see .github/workflows/deploy.yml.
+
 services:
-  # Main Application - Portfolio Website
-  nginx-app:
-    image: ${DOCKERHUB_USERNAME}/my-portfolio:${IMAGE_TAG:-latest}
+  portfolio:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    container_name: portfolio-app
+      args:
+        VITE_EMAILJS_SERVICE_ID: ${VITE_EMAILJS_SERVICE_ID}
+        VITE_EMAILJS_TEMPLATE_ID: ${VITE_EMAILJS_TEMPLATE_ID}
+        VITE_EMAILJS_PUBLIC_KEY: ${VITE_EMAILJS_PUBLIC_KEY}
+    container_name: portfolio-local
     ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
-      - nginx-logs:/var/log/nginx
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-    networks:
-      - monitoring
+      - "8080:8080"
+    environment:
+      - PORT=8080
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "pidof", "nginx"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
-
-  # Prometheus - Metrics Collection
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - prometheus-data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention.time=15d'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
-    networks:
-      - monitoring
-    restart: unless-stopped
-    depends_on:
-      - node-exporter
-      - cadvisor
-      - nginx-exporter
-
-  # Grafana - Visualization Dashboard
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
-      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
-      - ./monitoring/grafana/provisioning/dashboards/overview.json:/var/lib/grafana/dashboards/overview.json:ro
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin123
-      - GF_USERS_ALLOW_SIGN_UP=false
-      - GF_SERVER_ROOT_URL=https://grafana.inamulhaq.site
-      - GF_INSTALL_PLUGINS=
-      # DISABLE PLUGIN AUTO-INSTALLATION
-      - GF_PLUGINS_ENABLE_ALPHA=false
-      - GF_PLUGIN_ADMIN_ENABLED=false
-      # SKIP PLUGIN UPDATES ON STARTUP
-      - GF_ANALYTICS_REPORTING_ENABLED=false
-      - GF_ANALYTICS_CHECK_FOR_UPDATES=false
-      - GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES=false
-    healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 60s
-    networks:
-      - monitoring
-    restart: unless-stopped
-    depends_on:
-      - prometheus
-
-  # Node Exporter - EC2 System Metrics
-  node-exporter:
-    image: prom/node-exporter:latest
-    container_name: node-exporter
-    ports:
-      - "9100:9100"
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--path.rootfs=/rootfs'
-      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
-    networks:
-      - monitoring
-    restart: unless-stopped
-    privileged: true
-
-  # cAdvisor - Container Metrics
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
-    container_name: cadvisor
-    ports:
-      - "8080:8080"
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
-    networks:
-      - monitoring
-    restart: unless-stopped
-    privileged: true
-    devices:
-      - /dev/kmsg
-
-  # Nginx Exporter - Nginx Metrics
-  nginx-exporter:
-    image: nginx/nginx-prometheus-exporter:latest
-    container_name: nginx-exporter
-    ports:
-      - "9113:9113"
-    command:
-      - '-nginx.scrape-uri=http://nginx-app/nginx_status'
-    networks:
-      - monitoring
-    restart: unless-stopped
-    depends_on:
-      - nginx-app
-
-  # Blackbox Exporter - External Monitoring
-  blackbox-exporter:
-    image: prom/blackbox-exporter:latest
-    container_name: blackbox-exporter
-    ports:
-      - "9115:9115"
-    volumes:
-      - ./monitoring/blackbox/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
-    networks:
-      - monitoring
-    restart: unless-stopped
-
-networks:
-  monitoring:
-    driver: bridge
-
-volumes:
-  prometheus-data:
-  grafana-data:
-  nginx-logs:
+      start_period: 10s

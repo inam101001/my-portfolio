@@ -27,18 +27,23 @@ RUN npm run build
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
 
+# Install gettext for envsubst (used to inject the Cloud Run $PORT at startup)
+RUN apk add --no-cache gettext curl
+
 # Copy built files from builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy custom nginx configuration
-COPY docker/nginx.conf /etc/nginx/nginx.conf
+# Copy nginx config as a template — ${PORT} will be substituted at container startup
+COPY docker/nginx.conf /etc/nginx/nginx.conf.template
 
-# Expose ports
-EXPOSE 80 443
+# Cloud Run sets PORT (default 8080). We expose it as a convention.
+EXPOSE 8080
 
-# Health check
+# Health check (used for local docker-compose; Cloud Run uses its own probe)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost/ || exit 1
+  CMD curl -f http://localhost:${PORT:-8080}/ || exit 1
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Substitute ${PORT} in the nginx template then start nginx.
+# Single-quoting '${PORT}' prevents the shell from expanding it — envsubst receives
+# the literal string "${PORT}" and knows which variable to substitute.
+CMD ["/bin/sh", "-c", "envsubst '${PORT}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
