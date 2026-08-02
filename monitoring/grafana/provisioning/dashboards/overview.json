@@ -335,11 +335,11 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "expr": "probe_success{instance=\"https://inamulhaq.dev\"}",
+          "expr": "probe_success{instance=\"https://inamulhaq.site\"}",
           "refId": "A"
         }
       ],
-      "title": "inamulhaq.dev",
+      "title": "inamulhaq.site",
       "type": "stat"
     },
     {
@@ -404,11 +404,11 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "expr": "probe_success{instance=\"https://grafana.inamulhaq.dev\"}",
+          "expr": "probe_success{instance=\"https://grafana.inamulhaq.site\"}",
           "refId": "A"
         }
       ],
-      "title": "grafana.inamulhaq.dev",
+      "title": "grafana.inamulhaq.site",
       "type": "stat"
     },
     {
@@ -473,11 +473,11 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "expr": "probe_success{instance=\"https://prometheus.inamulhaq.dev\"}",
+          "expr": "probe_success{instance=\"https://prometheus.inamulhaq.site\"}",
           "refId": "A"
         }
       ],
-      "title": "prometheus.inamulhaq.dev",
+      "title": "prometheus.inamulhaq.site",
       "type": "stat"
     },
     {
@@ -529,7 +529,7 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "expr": "probe_http_duration_seconds{instance=\"https://inamulhaq.dev\"} * 1000",
+          "expr": "probe_http_duration_seconds{instance=\"https://inamulhaq.site\"} * 1000",
           "refId": "A"
         }
       ],
@@ -585,7 +585,7 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "expr": "(probe_ssl_earliest_cert_expiry{instance=\"https://inamulhaq.dev\"} - time()) / 86400",
+          "expr": "(probe_ssl_earliest_cert_expiry{instance=\"https://inamulhaq.site\"} - time()) / 86400",
           "refId": "A"
         }
       ],

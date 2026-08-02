@@ -47,9 +47,9 @@ scrape_configs:
       module: [https_2xx]
     static_configs:
       - targets:
-          - https://inamulhaq.dev
-          - https://grafana.inamulhaq.dev
-          - https://prometheus.inamulhaq.dev
+          - https://inamulhaq.site
+          - https://grafana.inamulhaq.site
+          - https://prometheus.inamulhaq.site
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

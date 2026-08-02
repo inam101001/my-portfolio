@@ -41,3 +41,15 @@ ansible/inventory/hosts
 
 # OS files
 Thumbs.db
+
+# Local design and browser review output
+.codex-*
+.impeccable/
+.claude/settings.local.json
+tmp/
+
+# graphify knowledge-graph cache/output (regenerate locally, don't commit)
+graphify-out/
+
+PRODUCT.md
+DESIGN.md

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="75" viewBox="0 0 96 75" role="img" aria-label="Animated observability artifact">
+  <path d="M7 58 L44 39 L89 55 L51 73 Z" fill="#ecece7" stroke="#b8b8b2" stroke-width=".7"/>
+  <path d="M7 58 L51 73 L89 55" fill="none" stroke="#b8b8b2" stroke-width=".45" opacity=".55"/>
+
+  <path d="M11 53 L19 47 L28 50 L37 39 L48 44 L59 29" fill="none" stroke="#5f7fff" stroke-width="1.2"/>
+  <path d="M11 56 H61" fill="none" stroke="#b8b8b2" stroke-width=".65"/>
+  <path d="M19 47 V56 M28 50 V56 M37 39 V56 M48 44 V56 M59 29 V56" fill="none" stroke="#5f7fff" stroke-width=".55" stroke-dasharray="1.5 1.7" opacity=".6"/>
+
+  <circle cx="19" cy="47" r="1.5" fill="#f6f6f2" stroke="#171717" stroke-width=".8"/>
+  <circle cx="28" cy="50" r="1.5" fill="#f6f6f2" stroke="#171717" stroke-width=".8"/>
+  <circle cx="37" cy="39" r="1.5" fill="#f6f6f2" stroke="#171717" stroke-width=".8"/>
+  <circle cx="48" cy="44" r="1.5" fill="#f6f6f2" stroke="#171717" stroke-width=".8"/>
+  <circle cx="59" cy="29" r="1.5" fill="#f6f6f2" stroke="#171717" stroke-width=".8"/>
+
+  <circle r="1.35" fill="#5f7fff">
+    <animateMotion dur="2.7s" repeatCount="indefinite" path="M11 53 L19 47 L28 50 L37 39 L48 44 L59 29"/>
+  </circle>
+
+  <g>
+    <circle cx="67" cy="33" r="12.5" fill="#f6f6f2" stroke="#171717" stroke-width="1"/>
+    <circle cx="67" cy="33" r="7.5" fill="#d8e977" opacity=".18"/>
+    <path d="M76 42 L86 52" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round"/>
+    <path d="M58 34 C62 29 68 27 74 29" fill="none" stroke="#74cf91" stroke-width="1.2" stroke-dasharray="2 2"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0;1 -1;0 0" dur="2.7s" repeatCount="indefinite"/>
+  </g>
+
+  <path d="M57 22 L73 44" stroke="#5f7fff" stroke-width="3" opacity="0">
+    <animateTransform attributeName="transform" type="translate" values="-8 0;9 0;-8 0" dur="2.7s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;.17;0" dur="2.7s" repeatCount="indefinite"/>
+  </path>
+
+  <path d="M76 36 C82 37 85 41 89 45" fill="none" stroke="#74cf91" stroke-width="1" stroke-dasharray="2 2"/>
+  <circle r="1.25" fill="#74cf91">
+    <animateMotion begin="-.6s" dur="2.7s" repeatCount="indefinite" path="M59 29 C68 29 75 33 82 38 C86 41 88 43 90 45"/>
+  </circle>
+
+  <ellipse cx="88" cy="46" rx="5.5" ry="3" fill="#74cf91" opacity="0">
+    <animate attributeName="opacity" values="0;0;.32;.32;0" keyTimes="0;.72;.8;.92;1" dur="2.7s" repeatCount="indefinite"/>
+    <animate attributeName="rx" values="3;3;7;7;3" keyTimes="0;.72;.8;.92;1" dur="2.7s" repeatCount="indefinite"/>
+  </ellipse>
+</svg>

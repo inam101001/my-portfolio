@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="85" height="56" viewBox="0 0 85 56" role="img" aria-label="Animated backend API routing artifact">
+  <defs>
+    <linearGradient id="apiTop" x1="0" x2="1">
+      <stop offset="0" stop-color="#dfe6ff"/>
+      <stop offset="1" stop-color="#f6f6f2"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M10 44 L40 28 L76 42 L45 54 Z" fill="#ecece7" stroke="#b8b8b2" stroke-width=".7"/>
+  <path d="M10 44 L45 54 L76 42" fill="none" stroke="#b8b8b2" stroke-width=".45" opacity=".55"/>
+  <path d="M20 38 L40 28 M30 45 L53 33 M44 50 L67 38" fill="none" stroke="#b8b8b2" stroke-width=".35" opacity=".4"/>
+
+  <circle cx="10" cy="35" r="5.2" fill="#f6f6f2" stroke="#171717" stroke-width="1"/>
+  <circle cx="10" cy="35" r="1.5" fill="#5f7fff"/>
+  <circle cx="10" cy="35" r="7" fill="none" stroke="#5f7fff" stroke-width=".55" opacity=".25">
+    <animate attributeName="r" values="5.5;8;5.5" dur="2.4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".4;0;.4" dur="2.4s" repeatCount="indefinite"/>
+  </circle>
+
+  <g>
+    <path d="M32 23 L43 17 L55 23 L44 29 Z" fill="url(#apiTop)" stroke="#171717" stroke-width=".85"/>
+    <path d="M32 23 V37 L44 43 V29 Z" fill="#edf1ff" stroke="#171717" stroke-width=".85"/>
+    <path d="M55 23 V37 L44 43 V29 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".85"/>
+    <path d="M38 23 L44 20 L50 23 L44 26 Z" fill="none" stroke="#5f7fff" stroke-width="1"/>
+    <circle cx="40" cy="34" r="1" fill="#5f7fff"/>
+    <circle cx="44" cy="36" r="1" fill="#5f7fff" opacity=".7"/>
+    <circle cx="48" cy="34" r="1" fill="#5f7fff" opacity=".45"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -1.4;0 0" dur="2.8s" repeatCount="indefinite"/>
+  </g>
+
+  <g>
+    <ellipse cx="69" cy="23" rx="8" ry="4.5" fill="#74cf91" opacity="0">
+      <animate attributeName="opacity" values="0;0;.32;.32;0" keyTimes="0;.72;.8;.92;1" dur="2.6s" repeatCount="indefinite"/>
+      <animate attributeName="rx" values="5;5;9;9;5" keyTimes="0;.72;.8;.92;1" dur="2.6s" repeatCount="indefinite"/>
+    </ellipse>
+    <path d="M63 21 L69 18 L75 21 L69 24 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".75"/>
+    <path d="M63 21 V28 L69 31 V24 Z" fill="#ecece7" stroke="#171717" stroke-width=".75"/>
+    <path d="M75 21 V28 L69 31 V24 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".75"/>
+    <circle cx="72" cy="27" r=".8" fill="#74cf91"/>
+  </g>
+
+  <g>
+    <ellipse cx="67" cy="43" rx="8" ry="4.5" fill="#74cf91" opacity="0">
+      <animate attributeName="opacity" values="0;0;.32;.32;0" keyTimes="0;.72;.8;.92;1" begin="-1.3s" dur="2.6s" repeatCount="indefinite"/>
+      <animate attributeName="rx" values="5;5;9;9;5" keyTimes="0;.72;.8;.92;1" begin="-1.3s" dur="2.6s" repeatCount="indefinite"/>
+    </ellipse>
+    <path d="M61 41 L67 38 L73 41 L67 44 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".75"/>
+    <path d="M61 41 V48 L67 51 V44 Z" fill="#ecece7" stroke="#171717" stroke-width=".75"/>
+    <path d="M73 41 V48 L67 51 V44 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".75"/>
+    <circle cx="70" cy="47" r=".8" fill="#74cf91"/>
+  </g>
+
+  <path d="M15 35 C23 35 26 31 32 30" fill="none" stroke="#5f7fff" stroke-width="1" stroke-dasharray="2 2"/>
+  <path d="M54 28 C60 27 63 24 67 23" fill="none" stroke="#74cf91" stroke-width="1" stroke-dasharray="2 2"/>
+  <path d="M53 35 C59 37 62 40 65 43" fill="none" stroke="#74cf91" stroke-width="1" stroke-dasharray="2 2"/>
+
+  <circle r="1.45" fill="#5f7fff">
+    <animateMotion dur="2.6s" repeatCount="indefinite" path="M10 35 C22 35 26 31 34 30 C47 29 57 27 69 23"/>
+  </circle>
+  <circle r="1.25" fill="#74cf91">
+    <animateMotion begin="-1.3s" dur="2.6s" repeatCount="indefinite" path="M10 35 C22 35 26 31 34 30 C48 31 58 38 67 43"/>
+  </circle>
+</svg>

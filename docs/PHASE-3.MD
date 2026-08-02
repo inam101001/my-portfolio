@@ -108,7 +108,7 @@ deploy:
     - Pull latest code (git pull)
     - Rebuild containers (docker-compose up -d --build)
     - Clean old images (docker image prune -f)
-    - Health check (curl https://inamulhaq.dev)
+    - Health check (curl https://inamulhaq.site)
 ```
 
 ---
@@ -156,7 +156,7 @@ git commit -m "test: verify CI/CD pipeline"
 git push origin main
 
 # Watch: GitHub → Actions tab
-# Verify: https://inamulhaq.dev
+# Verify: https://inamulhaq.site
 ```
 
 ---

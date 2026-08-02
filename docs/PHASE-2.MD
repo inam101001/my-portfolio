@@ -67,10 +67,10 @@ terraform/
 │              AWS Route53 (DNS Management)                   │
 │                                                             │
 │  A Records:                                                 │
-│  • inamulhaq.dev           → 34.227.208.102                │
-│  • grafana.inamulhaq.dev   → 34.227.208.102                │
-│  • prometheus.inamulhaq.dev → 34.227.208.102               │
-│  • www.inamulhaq.dev (CNAME)                               │
+│  • inamulhaq.site           → 34.227.208.102                │
+│  • grafana.inamulhaq.site   → 34.227.208.102                │
+│  • prometheus.inamulhaq.site → 34.227.208.102               │
+│  • www.inamulhaq.site (CNAME)                               │
 └─────────────────────────┬───────────────────────────────────┘
                           │
                           ▼
@@ -87,12 +87,12 @@ terraform/
 │  ┌───────────────────────────────────────────────────────┐ │
 │  │  Nginx (SSL Termination + Reverse Proxy)              │ │
 │  │                                                        │ │
-│  │  https://inamulhaq.dev → Portfolio                    │ │
-│  │  https://grafana.inamulhaq.dev → grafana:3000         │ │
-│  │  https://prometheus.inamulhaq.dev → prometheus:9090   │ │
+│  │  https://inamulhaq.site → Portfolio                    │ │
+│  │  https://grafana.inamulhaq.site → grafana:3000         │ │
+│  │  https://prometheus.inamulhaq.site → prometheus:9090   │ │
 │  └───────────────────────────────────────────────────────┘ │
 │                                                             │
-│  SSL: /etc/letsencrypt/live/inamulhaq.dev/                │
+│  SSL: /etc/letsencrypt/live/inamulhaq.site/                │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -103,7 +103,7 @@ terraform/
 ```
 Let's Encrypt → Certbot → Port 80 Challenge → Certificates Issued
                    ↓
-    /etc/letsencrypt/live/inamulhaq.dev/
+    /etc/letsencrypt/live/inamulhaq.site/
          ├── fullchain.pem
          └── privkey.pem
                    ↓
@@ -144,10 +144,10 @@ Ingress:
 
 ### DNS Records
 ```hcl
-inamulhaq.dev → 34.227.208.102
-www.inamulhaq.dev → inamulhaq.dev (CNAME)
-grafana.inamulhaq.dev → 34.227.208.102
-prometheus.inamulhaq.dev → 34.227.208.102
+inamulhaq.site → 34.227.208.102
+www.inamulhaq.site → inamulhaq.site (CNAME)
+grafana.inamulhaq.site → 34.227.208.102
+prometheus.inamulhaq.site → 34.227.208.102
 ```
 
 ---
@@ -183,10 +183,10 @@ docker-compose up -d --build
 ```bash
 # Request certificates
 sudo certbot certonly --standalone \
-  -d inamulhaq.dev \
-  -d www.inamulhaq.dev \
-  -d grafana.inamulhaq.dev \
-  -d prometheus.inamulhaq.dev
+  -d inamulhaq.site \
+  -d www.inamulhaq.site \
+  -d grafana.inamulhaq.site \
+  -d prometheus.inamulhaq.site
 ```
 
 **Auto-renewal:** Enabled (runs twice daily)
@@ -206,16 +206,16 @@ server {
 server {
     listen 443 ssl;
     http2 on;
-    server_name inamulhaq.dev www.inamulhaq.dev;
+    server_name inamulhaq.site www.inamulhaq.site;
     
-    ssl_certificate /etc/letsencrypt/live/inamulhaq.dev/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/inamulhaq.dev/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/inamulhaq.site/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/inamulhaq.site/privkey.pem;
 }
 
 # Subdomains (reverse proxy)
 server {
     listen 443 ssl;
-    server_name grafana.inamulhaq.dev;
+    server_name grafana.inamulhaq.site;
     
     location / {
         proxy_pass http://grafana:3000;
@@ -229,9 +229,9 @@ server {
 
 | URL | Purpose |
 |-----|---------|
-| https://inamulhaq.dev | Portfolio |
-| https://grafana.inamulhaq.dev | Monitoring |
-| https://prometheus.inamulhaq.dev | Metrics |
+| https://inamulhaq.site | Portfolio |
+| https://grafana.inamulhaq.site | Monitoring |
+| https://prometheus.inamulhaq.site | Metrics |
 
 ---
 

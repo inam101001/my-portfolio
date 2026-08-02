@@ -11,6 +11,16 @@ RUN npm ci --quiet
 # Copy source code
 COPY . .
 
+# EmailJS credentials, baked into the client bundle at build time (see .env.example).
+# The public key is meant to be exposed client-side; EmailJS enforces restrictions
+# (allowed domains, template scope) from its dashboard, not by hiding this value.
+ARG VITE_EMAILJS_SERVICE_ID
+ARG VITE_EMAILJS_TEMPLATE_ID
+ARG VITE_EMAILJS_PUBLIC_KEY
+ENV VITE_EMAILJS_SERVICE_ID=$VITE_EMAILJS_SERVICE_ID
+ENV VITE_EMAILJS_TEMPLATE_ID=$VITE_EMAILJS_TEMPLATE_ID
+ENV VITE_EMAILJS_PUBLIC_KEY=$VITE_EMAILJS_PUBLIC_KEY
+
 # Build the application
 RUN npm run build
 

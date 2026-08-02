@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="93" height="77" viewBox="0 0 93 77" role="img" aria-label="Animated cloud infrastructure artifact">
+  <path d="M7 56 L43 38 L85 54 L48 72 Z" fill="#ecece7" stroke="#b8b8b2" stroke-width=".7"/>
+  <path d="M7 56 L48 72 L85 54" fill="none" stroke="#b8b8b2" stroke-width=".45" opacity=".55"/>
+
+  <g>
+    <path d="M12 42 L33 31 L55 42 L34 53 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".9"/>
+    <path d="M12 42 V50 L34 61 V53 Z" fill="#edf1ff" stroke="#171717" stroke-width=".9"/>
+    <path d="M55 42 V50 L34 61 V53 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".9"/>
+    <path d="M15 51 L34 61 L53 51" fill="none" stroke="#5f7fff" stroke-width=".65" opacity=".8"/>
+  </g>
+
+  <g transform="translate(20 37)">
+    <path d="M0 0 L5 -2.5 L10 0 L5 2.5 Z" fill="#5f7fff" stroke="#171717" stroke-width=".65"/>
+    <path d="M0 0 V7 L5 9.5 V2.5 Z" fill="#dfe6ff" stroke="#171717" stroke-width=".65"/>
+    <path d="M10 0 V7 L5 9.5 V2.5 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".65"/>
+    <animateTransform attributeName="transform" type="translate" values="20 37;20 33;20 37" dur="2.7s" repeatCount="indefinite"/>
+  </g>
+
+  <g transform="translate(34 43)">
+    <path d="M0 0 L5 -2.5 L10 0 L5 2.5 Z" fill="#74cf91" stroke="#171717" stroke-width=".65"/>
+    <path d="M0 0 V7 L5 9.5 V2.5 Z" fill="#dff5e6" stroke="#171717" stroke-width=".65"/>
+    <path d="M10 0 V7 L5 9.5 V2.5 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".65"/>
+    <animateTransform attributeName="transform" type="translate" values="34 43;34 39;34 43" begin="-.65s" dur="2.7s" repeatCount="indefinite"/>
+  </g>
+
+  <g transform="translate(24 50)">
+    <path d="M0 0 L5 -2.5 L10 0 L5 2.5 Z" fill="#d8e977" stroke="#171717" stroke-width=".65"/>
+    <path d="M0 0 V6 L5 8.5 V2.5 Z" fill="#f0f5c7" stroke="#171717" stroke-width=".65"/>
+    <path d="M10 0 V6 L5 8.5 V2.5 Z" fill="#f6f6f2" stroke="#171717" stroke-width=".65"/>
+    <animateTransform attributeName="transform" type="translate" values="24 50;24 47;24 50" begin="-1.3s" dur="2.7s" repeatCount="indefinite"/>
+  </g>
+
+  <g>
+    <ellipse cx="71" cy="25" rx="15" ry="8" fill="#74cf91" opacity="0">
+      <animate attributeName="opacity" values="0;0;.2;.2;0" keyTimes="0;.68;.78;.92;1" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="rx" values="11;11;17;17;11" keyTimes="0;.68;.78;.92;1" dur="2.5s" repeatCount="indefinite"/>
+    </ellipse>
+    <path d="M59 28 H80 C87 28 88 19 82 16 C81 8 71 5 65 11 C60 6 51 10 51 17 C44 20 48 28 59 28 Z" fill="#f6f6f2" stroke="#171717" stroke-width="1"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -2;0 0" dur="3s" repeatCount="indefinite"/>
+  </g>
+
+  <path d="M51 45 C59 41 63 33 68 27" fill="none" stroke="#5f7fff" stroke-width="1" stroke-dasharray="2 2"/>
+  <path d="M55 50 C65 46 72 39 76 29" fill="none" stroke="#74cf91" stroke-width="1" stroke-dasharray="2 2" opacity=".85"/>
+
+  <circle r="1.45" fill="#5f7fff">
+    <animateMotion dur="2.5s" repeatCount="indefinite" path="M43 48 C57 45 63 34 69 25"/>
+  </circle>
+  <circle r="1.2" fill="#74cf91">
+    <animateMotion begin="-.9s" dur="2.5s" repeatCount="indefinite" path="M46 52 C61 48 69 38 76 27"/>
+  </circle>
+
+  <circle cx="69" cy="25" r="2.2" fill="#d8e977" opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.72;.8;.9;1" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="1.5;1.5;3;3;1.5" keyTimes="0;.72;.8;.9;1" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>

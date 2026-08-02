@@ -1,96 +1,86 @@
-import type { CSSProperties } from "react";
-import { useEffect, useMemo, useState } from "react";
-
-const GLITCH_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/+-.";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 type ScrambleTextProps = {
-  text: string;
+  lines: string[];
   className?: string;
-  duration?: number;
-  stepMs?: number;
-  triggerKey?: number;
+  style?: CSSProperties;
 };
 
-function randomChar() {
-  return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+const SCRAMBLE_CHARS = "!<>-_\\/[]{}=+*^?#01";
+const SCRAMBLE_DURATION_MS = 650;
+const FLICKER_INTERVAL_MS = 45;
+
+function scrambleChar(): string {
+  return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
 }
 
-function scramble(text: string, resolvedCount: number) {
-  return text
-    .split("")
-    .map((char, index) => {
-      if (char === " ") return " ";
-      if (index < resolvedCount) return char;
-      return randomChar();
-    })
-    .join("");
+function easeOutCubic(t: number): number {
+  return 1 - Math.pow(1 - t, 3);
 }
 
-function makeInitialScramble(text: string) {
-  return text
-    .split("")
-    .map((char) => (char === " " ? " " : randomChar()))
-    .join("");
-}
-
-export function ScrambleText({
-  text,
-  className,
-  duration = 1000,
-  stepMs = 42,
-  triggerKey = 0,
-}: ScrambleTextProps) {
-  const [displayText, setDisplayText] = useState(text);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const characterCount = useMemo(
-    () => text.replace(/\s/g, "").length,
-    [text],
-  );
-  const style = {
-    "--scramble-chars": characterCount,
-  } as CSSProperties;
+export function ScrambleText({ lines, className, style }: ScrambleTextProps) {
+  const [displayLines, setDisplayLines] = useState(lines);
+  const [isScrambling, setIsScrambling] = useState(false);
+  const frameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    if (triggerKey === 0) return;
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      setDisplayText(text);
-      return;
-    }
-
-    let frame = 0;
-
-    setDisplayText(makeInitialScramble(text));
-    setIsAnimating(true);
-
-    const interval = window.setInterval(() => {
-      frame += 1;
-      const progress = Math.min(1, (frame * stepMs) / duration);
-      const resolvedCount = Math.floor(progress * text.length);
-      const shouldResolve = progress >= 1;
-      setDisplayText(shouldResolve ? text : scramble(text, resolvedCount));
-
-      if (shouldResolve) {
-        setIsAnimating(false);
-        window.clearInterval(interval);
-      }
-    }, stepMs);
-
     return () => {
-      if (interval) {
-        window.clearInterval(interval);
+      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (isScrambling) return;
+    setIsScrambling(true);
+    const start = performance.now();
+    let lastFlicker = 0;
+    let flickerChars = lines.map((line) => line.split("").map(scrambleChar));
+
+    const tick = (now: number) => {
+      const rawProgress = Math.min((now - start) / SCRAMBLE_DURATION_MS, 1);
+      const progress = easeOutCubic(rawProgress);
+
+      if (now - lastFlicker >= FLICKER_INTERVAL_MS) {
+        lastFlicker = now;
+        flickerChars = lines.map((line) => line.split("").map(scrambleChar));
+      }
+
+      setDisplayLines(
+        lines.map((line, lineIndex) =>
+          line
+            .split("")
+            .map((char, index) => {
+              if (char === " ") return " ";
+              const revealAt = index / line.length;
+              return progress > revealAt ? char : flickerChars[lineIndex][index];
+            })
+            .join(""),
+        ),
+      );
+
+      if (rawProgress < 1) {
+        frameRef.current = requestAnimationFrame(tick);
+      } else {
+        setDisplayLines(lines);
+        setIsScrambling(false);
       }
     };
-  }, [duration, stepMs, text, triggerKey]);
+
+    frameRef.current = requestAnimationFrame(tick);
+  };
 
   return (
-    <span
-      className={className}
-      data-scrambling={isAnimating}
+    <h1
+      className={isScrambling ? `${className ?? ""} is-scrambling`.trim() : className}
       style={style}
+      onMouseEnter={handleMouseEnter}
     >
-      {displayText}
-    </span>
+      {displayLines.map((line, index) => (
+        <span className="scramble-line" key={index}>
+          {line}
+          {index < displayLines.length - 1 && <br />}
+        </span>
+      ))}
+    </h1>
   );
 }

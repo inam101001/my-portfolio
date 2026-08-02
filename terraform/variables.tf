@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "domain_name" {
   description = "Domain name for the portfolio"
   type        = string
-  default     = "inamulhaq.dev"
+  default     = "inamulhaq.site"
 }
 
 variable "instance_type" {

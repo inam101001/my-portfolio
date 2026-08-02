@@ -6,7 +6,7 @@
 
   vars:
     app_dir: /home/ec2-user/app
-    domain_name: inamulhaq.dev
+    domain_name: inamulhaq.site
 
   tasks:
     - name: Copy docker-compose.yml to EC2
