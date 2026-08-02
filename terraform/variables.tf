@@ -32,9 +32,3 @@ variable "github_repo" {
   type        = string
   default     = "inam101001/my-portfolio"
 }
-
-variable "terraform_state_bucket" {
-  description = "GCS bucket name for Terraform remote state (must be globally unique)"
-  type        = string
-  default     = "portfolio-terraform-state"
-}
