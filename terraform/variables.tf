@@ -6,7 +6,7 @@ variable "gcp_project_id" {
 variable "gcp_region" {
   description = "GCP region for Cloud Run and Artifact Registry"
   type        = string
-  default     = "europe-west3"  # Frankfurt, Germany — Cloud Run free tier applies here
+  default     = "europe-west1"  
 }
 
 variable "domain_name" {
