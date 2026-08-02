@@ -38,20 +38,11 @@ resource "google_dns_record_set" "root_aaaa" {
   rrdatas      = [for r in local.root_records : r.rrdata if r.type == "AAAA"]
 }
 
-# WWW Domain A Records
-resource "google_dns_record_set" "www_a" {
+# WWW Domain CNAME Record
+resource "google_dns_record_set" "www_cname" {
   name         = "www.${var.domain_name}."
-  type         = "A"
+  type         = "CNAME"
   ttl          = 300
   managed_zone = google_dns_managed_zone.portfolio.name
-  rrdatas      = [for r in local.www_records : r.rrdata if r.type == "A"]
-}
-
-# WWW Domain AAAA Records
-resource "google_dns_record_set" "www_aaaa" {
-  name         = "www.${var.domain_name}."
-  type         = "AAAA"
-  ttl          = 300
-  managed_zone = google_dns_managed_zone.portfolio.name
-  rrdatas      = [for r in local.www_records : r.rrdata if r.type == "AAAA"]
+  rrdatas      = [for r in local.www_records : r.rrdata if r.type == "CNAME"]
 }
