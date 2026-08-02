@@ -8,12 +8,12 @@ const ciSteps = [
   "Git push → main",
   "Docker Buildx build (local, for scan)",
   "Trivy scan — critical/high (report only)",
-  "Push image → Docker Hub (:latest + :sha)",
-  "SSH deploy → docker-compose up",
+  "Push image → Artifact Registry (:latest + :sha)",
+  "Auth via WIF → deploy to Cloud Run",
   "Verify health (curl https://)",
 ];
 
-const monitorTargets = ["node-exporter", "cAdvisor", "nginx-exporter", "blackbox-exporter"];
+const wifRoles = ["roles/run.admin", "roles/artifactregistry.writer", "roles/iam.serviceAccountUser"];
 
 export function PortfolioArchitectureDiagram() {
   return (
@@ -55,18 +55,18 @@ export function PortfolioArchitectureDiagram() {
 
           <div className="pd-col pd-col-edge">
             <span className="pd-group-label" data-tone="alert">
-              AWS · Terraform
+              GCP · Terraform
             </span>
             <div className="pd-sync-box">
-              <span className="pd-sync-title">CloudFront → origin.inamulhaq.site</span>
+              <span className="pd-sync-title">Cloud DNS → inamulhaq.site</span>
               <span className="pd-sync-meta" data-tone="blue">
-                ACM TLS · SPA fallback · caches /assets/*
+                Domain mapping · Google-managed TLS
               </span>
             </div>
             <span className="pd-arrow-down" />
             <div className="pd-route-node">
               <span className="pd-live-dot" />
-              Route53 — root/www + grafana + prometheus
+              Cloud DNS — root A/AAAA + www CNAME
             </div>
           </div>
 
@@ -74,14 +74,14 @@ export function PortfolioArchitectureDiagram() {
 
           <div className="pd-col pd-col-host">
             <span className="pd-group-label" data-tone="green">
-              EC2 · Docker Compose
+              Cloud Run · Serverless
             </span>
             <div className="pd-host-block">
-              <div className="pd-nginx-block">Nginx — ports 80 / 443 (Let&apos;s Encrypt)</div>
+              <div className="pd-nginx-block">nginx:alpine — port 8080</div>
               <span className="pd-arrow-down" />
               <div className="pd-app-node">
-                <span className="pd-app-name">portfolio-app</span>
-                <span className="pd-app-meta">serves dist/ · t2.micro · Amazon Linux 2023</span>
+                <span className="pd-app-name">my-portfolio</span>
+                <span className="pd-app-meta">europe-west1 · scale 0→3 · 1 vCPU / 512Mi</span>
               </div>
             </div>
           </div>
@@ -89,13 +89,13 @@ export function PortfolioArchitectureDiagram() {
           <span className="pd-connector" />
 
           <div className="pd-col pd-col-monitor">
-            <span className="pd-group-label">Monitoring</span>
+            <span className="pd-group-label">Security</span>
             <div className="pd-targets">
-              <span className="pd-targets-title">Docker Compose exporters</span>
+              <span className="pd-targets-title">Workload Identity Federation</span>
               <ul>
-                {monitorTargets.map((target) => (
-                  <li key={target}>
-                    {target} <em>[metrics]</em>
+                {wifRoles.map((role) => (
+                  <li key={role}>
+                    github-actions-deploy <em>[{role}]</em>
                   </li>
                 ))}
               </ul>
@@ -103,12 +103,12 @@ export function PortfolioArchitectureDiagram() {
             <span className="pd-arrow-down" />
             <div className="pd-prometheus">
               <span className="pd-prometheus-sweep" />
-              Prometheus — 15d retention
+              No long-lived keys
             </div>
             <span className="pd-arrow-down" />
             <div className="pd-grafana">
-              <span>Grafana</span>
-              <div className="pd-grafana-dash">grafana.inamulhaq.site</div>
+              <span>OIDC provider</span>
+              <div className="pd-grafana-dash">token.actions.githubusercontent.com</div>
             </div>
           </div>
         </div>

@@ -858,14 +858,16 @@ a:focus-visible {
 .project-architecture,
 .banking-diagram,
 .mistle-diagram,
-.portfolio-diagram {
+.portfolio-diagram,
+.applyst-diagram {
   transition: opacity 280ms var(--ease-out);
 }
 
 .project-record:not([data-expanded="true"]) .project-architecture,
 .project-record:not([data-expanded="true"]) .banking-diagram,
 .project-record:not([data-expanded="true"]) .mistle-diagram,
-.project-record:not([data-expanded="true"]) .portfolio-diagram {
+.project-record:not([data-expanded="true"]) .portfolio-diagram,
+.project-record:not([data-expanded="true"]) .applyst-diagram {
   opacity: 0;
 }
 
@@ -1598,7 +1600,8 @@ a:focus-visible {
   }
 }
 
-.mistle-diagram {
+.mistle-diagram,
+.applyst-diagram {
   position: relative;
   display: flex;
   align-items: center;
@@ -2926,7 +2929,8 @@ a:focus-visible {
   .project-record:not([data-expanded="true"]) .project-architecture,
   .project-record:not([data-expanded="true"]) .banking-diagram,
   .project-record:not([data-expanded="true"]) .mistle-diagram,
-  .project-record:not([data-expanded="true"]) .portfolio-diagram {
+  .project-record:not([data-expanded="true"]) .portfolio-diagram,
+  .project-record:not([data-expanded="true"]) .applyst-diagram {
     opacity: 1;
   }
 
@@ -3162,7 +3166,8 @@ a:focus-visible {
   .project-record:not([data-expanded="true"]) .project-architecture,
   .project-record:not([data-expanded="true"]) .banking-diagram,
   .project-record:not([data-expanded="true"]) .mistle-diagram,
-  .project-record:not([data-expanded="true"]) .portfolio-diagram {
+  .project-record:not([data-expanded="true"]) .portfolio-diagram,
+  .project-record:not([data-expanded="true"]) .applyst-diagram {
     opacity: 1;
   }
 
@@ -3183,7 +3188,8 @@ a:focus-visible {
 
   .banking-diagram,
   .mistle-diagram,
-  .portfolio-diagram {
+  .portfolio-diagram,
+  .applyst-diagram {
     padding-inline: 14px;
   }
 

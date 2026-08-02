@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { projects, type Project } from "../data/portfolio";
+import { ApplystArchitectureDiagram } from "./artifacts/ApplystArchitectureDiagram";
 import { BankingArchitectureDiagram } from "./artifacts/BankingArchitectureDiagram";
 import { MistleArchitectureDiagram } from "./artifacts/MistleArchitectureDiagram";
 import { PortfolioArchitectureDiagram } from "./artifacts/PortfolioArchitectureDiagram";
@@ -75,9 +76,11 @@ function ProjectRecord({
               Live project <ArrowUpRight aria-hidden="true" />
             </a>
           ) : null}
-          <a href={project.githubUrl} target="_blank" rel="noreferrer">
-            GitHub repository <ArrowUpRight aria-hidden="true" />
-          </a>
+          {project.githubUrl ? (
+            <a href={project.githubUrl} target="_blank" rel="noreferrer">
+              GitHub repository <ArrowUpRight aria-hidden="true" />
+            </a>
+          ) : null}
         </div>
       </div>
       {project.id === "banking" ? (
@@ -86,6 +89,8 @@ function ProjectRecord({
         <MistleArchitectureDiagram />
       ) : project.id === "portfolio" ? (
         <PortfolioArchitectureDiagram />
+      ) : project.id === "applyst" ? (
+        <ApplystArchitectureDiagram />
       ) : (
         <ProjectArchitecture project={project} recordIndex={index} />
       )}

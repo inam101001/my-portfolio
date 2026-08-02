@@ -45,6 +45,7 @@ Thumbs.db
 .impeccable/
 .claude/settings.local.json
 tmp/
+.claude
 
 # graphify knowledge-graph cache/output (regenerate locally, don't commit)
 graphify-out/

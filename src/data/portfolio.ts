@@ -7,7 +7,7 @@ export type Project = {
   technologies: string[];
   stages: string[];
   liveUrl?: string;
-  githubUrl: string;
+  githubUrl?: string;
 };
 
 export type SystemGroup = {
@@ -41,21 +41,21 @@ export const projects: Project[] = [
   {
     id: "portfolio",
     shortName: "Portfolio",
-    title: "Personal Portfolio - AWS Infrastructure",
+    title: "Personal Portfolio - GCP Infrastructure",
     description:
-      "A React portfolio backed by container delivery, Terraform-managed AWS infrastructure, HTTPS, automated verification, and a provisioned monitoring stack.",
-    proof: ["Docker multi-stage build", "Terraform-managed AWS", "Prometheus + Grafana"],
+      "A React portfolio backed by container delivery, Terraform-managed GCP infrastructure on Cloud Run, keyless GitHub Actions auth via Workload Identity Federation, and Google-managed TLS.",
+    proof: ["Docker multi-stage build", "Terraform-managed GCP", "Keyless WIF auth"],
     technologies: [
       "React",
       "TypeScript",
       "Docker",
       "Terraform",
-      "AWS",
+      "Google Cloud",
+      "Cloud Run",
       "GitHub Actions",
       "Trivy",
-      "Prometheus",
-      "Grafana",
-      "Nginx",
+      "Artifact Registry",
+      "Cloud DNS",
     ],
     stages: ["Build", "Scan", "Push", "Deploy", "Verify"],
     liveUrl: "https://inamulhaq.site",
@@ -81,6 +81,27 @@ export const projects: Project[] = [
     stages: ["Source", "Package", "Ship", "Observe"],
     liveUrl: "https://mistle-1rft.vercel.app/",
     githubUrl: "https://github.com/inam101001/Mistle",
+  },
+  {
+    id: "applyst",
+    shortName: "Applyst",
+    title: "(In Progress) Applyst - Job Application Command Center",
+    description:
+      "A full-stack career platform that tracks applications through a five-stage kanban pipeline, generates LaTeX CVs and cover letters, and uses AI for cover-letter drafting, skill-gap analysis, ATS optimization, and interview prep.",
+    proof: ["5-stage kanban pipeline", "6 AI career tools", "AES-256-GCM encrypted keys"],
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "MongoDB",
+      "Tailwind CSS",
+      "OpenAI",
+      "Anthropic",
+      "Google Gemini",
+      "Vercel",
+    ],
+    stages: ["Saved", "Applied", "Interview", "Offer", "Rejected"],
+    liveUrl: "https://applyst-ecru.vercel.app?_vercel_share=UFy9WvFJ94WJUIXwD7O5b26BUEt0i3LW",
   },
 ];
 
